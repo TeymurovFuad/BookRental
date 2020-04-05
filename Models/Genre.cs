@@ -9,6 +9,7 @@ namespace BookRental.Models
     public class Genre
     {
         [Required]
+        [Key]
         public int genreIdPK { get; set; }
         [Required]
         public string name { get; set; }

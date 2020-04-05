@@ -7,6 +7,7 @@ namespace BookRental.Views.Home
     public class Book
     {
         [Required]
+        [Key]
         public int bookIdPK{ get; set; }
         [Required]
         public string ISBN { get; set; }
