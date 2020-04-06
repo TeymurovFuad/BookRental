@@ -9,15 +9,20 @@ namespace BookRental.Controllers
 {
     public class GenreController : Controller
     {
-        private DataContext db;
+        private ApplicationDbContext db;
         public GenreController()
         {
-            db = new DataContext();
+            db = new ApplicationDbContext();
         }
         // GET: Genre
         public ActionResult Index()
         {
             return View(db.Genres.ToList());
+        }
+
+        public ActionResult Create()
+        {
+            return View();
         }
 
         protected override void Dispose(bool disposing)

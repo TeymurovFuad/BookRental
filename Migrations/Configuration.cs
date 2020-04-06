@@ -5,14 +5,14 @@ namespace BookRental.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<BookRental.Models.DataContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<BookRental.Models.ApplicationDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(BookRental.Models.DataContext context)
+        protected override void Seed(BookRental.Models.ApplicationDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 
