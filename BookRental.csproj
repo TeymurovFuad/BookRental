@@ -173,9 +173,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202004052339377_AddBookAndGenreClasses.cs" />
-    <Compile Include="Migrations\202004052339377_AddBookAndGenreClasses.Designer.cs">
-      <DependentUpon>202004052339377_AddBookAndGenreClasses.cs</DependentUpon>
+    <Compile Include="Migrations\202004061950149_Initial.cs" />
+    <Compile Include="Migrations\202004061950149_Initial.Designer.cs">
+      <DependentUpon>202004061950149_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -262,8 +262,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202004052339377_AddBookAndGenreClasses.resx">
-      <DependentUpon>202004052339377_AddBookAndGenreClasses.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202004061950149_Initial.resx">
+      <DependentUpon>202004061950149_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

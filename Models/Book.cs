@@ -28,7 +28,7 @@ namespace BookRental.Views.Home
         public double currency { get; set; }
         [Required]
         [DisplayFormat(DataFormatString ="{0: mm dd yyyy}")]
-        public DateTime? dataAdded { get; set; }
+        public DateTime? dateAdded { get; set; }
         [Required]
         public int genreId { get; set; }
 

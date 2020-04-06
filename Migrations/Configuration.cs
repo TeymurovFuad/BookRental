@@ -9,7 +9,7 @@ namespace BookRental.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(BookRental.Models.ApplicationDbContext context)
