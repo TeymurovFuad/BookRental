@@ -19,18 +19,18 @@ namespace BookRental.Models
         }
     }
 
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class DataContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Book> Books { get; set; }
         public DbSet<Genre> Genres { get; set; }
-        public ApplicationDbContext()
+        public DataContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
 
-        public static ApplicationDbContext Create()
+        public static DataContext Create()
         {
-            return new ApplicationDbContext();
+            return new DataContext();
         }
     }
 }
