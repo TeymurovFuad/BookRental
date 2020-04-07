@@ -12,6 +12,7 @@ namespace BookRental.Models
         [Key]
         public int genreIdPK { get; set; }
         [Required]
+        [Display(Name = "Name")]
         public string name { get; set; }
     }
 }
