@@ -15,4 +15,4 @@ namespace BookRental.Models
         [Display(Name = "Name")]
         public string name { get; set; }
     }
-}
+};
