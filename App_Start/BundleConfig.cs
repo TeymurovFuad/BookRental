@@ -21,11 +21,13 @@ namespace BookRental
 
             bundles.Add(new ScriptBundle("~/bundles/bookrental").Include(
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/adminmenu.js"));
+                      "~/Scripts/adminmenu.js",
+                      "~/lib/font-awesome/js/all.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/lib/font-awesome/css/all.min.css"));
         }
     }
 }

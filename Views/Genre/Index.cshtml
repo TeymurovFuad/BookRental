@@ -1,13 +1,34 @@
 ﻿@model IEnumerable<BookRental.Models.Genre>
-
+@using BookRental.Models
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Genre</h2>
 
-<a type="button" class="btn btn-primary btn-sm" href="@Url.Action("Create")">
-    <span class="glyphicon glyphicon-plus"></span>
-    <span>Create New</span>
-</a>
+@Html.Partial("_CreateButtonPartial")
+
+<br />
+<br />
+<br />
+
+<table class="table table-hover">
+    <thead class="thead-dark">
+        <tr class="row">
+            <th class="col">@Html.DisplayNameFor(m => m.name)</th>
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="row">
+                <td class="col">@Html.DisplayFor(m => item.name)</td>
+                <td class="col">
+                    @Html.Partial("_TableButtonPartial", new IndividualButtonPartial { genreId = item.genreIdPK})
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
 

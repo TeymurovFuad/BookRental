@@ -1,0 +1,40 @@
+﻿@model BookRental.Models.IndividualButtonPartial
+@using BookRental.Models
+
+<td style="width:400px">
+    <div class="btn-group" role="group">
+        @Html.Partial("_IndividualButtonPartial",
+            new IndividualButtonPartial
+            {
+                action = "Edit",
+                buttonType = "primary",
+                icon = "pen",
+                genreId = Model.genreId,
+                bookId = Model.bookId,
+                customerId = Model.customerId,
+                membershipTypeId = Model.membershipTypeId
+            })
+        @Html.Partial("_IndividualButtonPartial",
+        new IndividualButtonPartial
+        {
+            action = "Edit",
+            buttonType = "success",
+            icon = "list",
+            genreId = Model.genreId,
+            bookId = Model.bookId,
+            customerId = Model.customerId,
+            membershipTypeId = Model.membershipTypeId
+        })
+         @Html.Partial("_IndividualButtonPartial",
+        new IndividualButtonPartial
+        {
+            action = "Edit",
+            buttonType = "danger",
+            icon = "trash",
+            genreId = Model.genreId,
+            bookId = Model.bookId,
+            customerId = Model.customerId,
+            membershipTypeId = Model.membershipTypeId
+        })
+    </div>
+</td>

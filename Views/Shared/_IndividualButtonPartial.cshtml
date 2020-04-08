@@ -1,0 +1,5 @@
+﻿@model BookRental.Models.IndividualButtonPartial
+<a type="button" class="btn btn-@Model.buttonType btn-sm" href="@Url.Action(Model.action)@Model.ActionParameter">
+    <span class="fa fa-@Model.icon"></span>
+    <span>@Model.text</span>
+</a>

@@ -17,6 +17,18 @@ namespace BookRental.Controllers
 		{
 			return View();
 		}
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public ActionResult Create(Genre genre)
+		{
+			if (ModelState.IsValid)
+			{
+				db.Genres.Add(genre);
+				db.SaveChanges();
+				return RedirectToAction("Index");
+			}
+			return View();
+		}
 
 		protected override void Dispose(bool disposing)
 		{
