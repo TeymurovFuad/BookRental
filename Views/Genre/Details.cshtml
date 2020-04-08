@@ -1,0 +1,26 @@
+﻿@model BookRental.Models.Genre
+
+@{
+    ViewBag.Title = "Details";
+}
+
+    <div>
+        <h3>Genre Details</h3>
+        <hr />
+        <fieldset disabled>
+            <div class="row py-3">
+                <div class="col-md-2">
+                    @Html.LabelFor(m=>m.name, htmlAttributes: new { @class="control-label"})
+                </div>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m=>m.name, new {@class="form-control"})
+                </div>
+            </div>
+        </fieldset>
+    </div>
+
+    <br />
+    <p>
+        @Html.Partial("_BackToListButtonPartial")
+    </p>
+
