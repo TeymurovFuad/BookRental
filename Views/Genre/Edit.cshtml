@@ -1,0 +1,32 @@
+﻿@model BookRental.Models.Genre
+@{
+    ViewBag.Title = "Edit";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="col-sm-5">
+        <h3>Edit Genre</h3>
+        <hr />
+
+        <div>
+            @Html.HiddenFor(m => m.genreIdPK)
+
+            <div class="form-group row">
+                @Html.LabelFor(m => m.name, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.EditorFor(m => m.name, new { htmlAttributes = new { @class = "form-control-plaintext"} })
+                    @Html.ValidationMessageFor(m => m.name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div>
+        @Html.Partial("_BackToListButtonPartial")
+        <input type="submit" value="Save" class="btn btn-sm btn-success" />
+    </div>
+}
+

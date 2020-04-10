@@ -1,5 +1,7 @@
 ﻿using BookRental.Models;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 
 namespace BookRental.Controllers
@@ -17,6 +19,8 @@ namespace BookRental.Controllers
 		{
 			return View();
 		}
+
+		//Post: Create
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public ActionResult Create(Genre genre)
@@ -30,11 +34,12 @@ namespace BookRental.Controllers
 			return View();
 		}
 
+		//Get: Details
 		public ActionResult Details(int? id)
 		{
 			if(id == null)
 				{
-					return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+					return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 				}
 			Genre genre = db.Genres.Find(id);
 			if(genre == null)
@@ -43,6 +48,38 @@ namespace BookRental.Controllers
 			}
 			return View(genre);
 		}
+
+		//Get: Edit
+		public ActionResult Edt(int? id)
+		{
+			if (id == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+			Genre genre = db.Genres.Find(id);
+			if (genre == null)
+			{
+				return HttpNotFound();
+			}
+			return View(genre);
+		}
+
+		//Post: Edit
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public ActionResult Edit(Genre genre)
+		{
+			if (ModelState.IsValid)
+			{
+				//var genreId = db.Genres.FirstOrDefault(n => n.genreIdPK.Equals(genre.genreIdPK));
+				//genreId.name = genre.name;
+				db.Entry(genre).State = EntityState.Modified;
+				db.SaveChanges();
+				return RedirectToAction("Index");
+			}
+			return View();
+		}
+
 
 		protected override void Dispose(bool disposing)
 		{
