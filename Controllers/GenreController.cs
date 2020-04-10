@@ -50,7 +50,7 @@ namespace BookRental.Controllers
 		}
 
 		//Get: Edit
-		public ActionResult Edt(int? id)
+		public ActionResult Edit(int? id)
 		{
 			if (id == null)
 			{
