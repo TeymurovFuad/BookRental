@@ -18,7 +18,8 @@ namespace BookRental.Controllers
         // GET: Book
         public ActionResult Index()
         {
-            return View(db.Books.ToList());
+            var books = db.Books.Include(b => b.Genre);
+            return View(books.ToList());
         }
 
         // GET: Book/Details/5
@@ -39,6 +40,7 @@ namespace BookRental.Controllers
         // GET: Book/Create
         public ActionResult Create()
         {
+            ViewBag.genreId = new SelectList(db.Genres, "genreIdPK", "name");
             return View();
         }
 
