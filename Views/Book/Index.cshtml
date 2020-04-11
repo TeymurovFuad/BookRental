@@ -1,0 +1,55 @@
+﻿@model IEnumerable<BookRental.Views.Home.Book>
+@using BookRental.Models
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h3>Manage Books</h3>
+
+<p>
+    @Html.Partial("_CreateButtonPartial")
+</p>
+<table class="table table-responsive table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ISBN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tittle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.availability)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Genre.name)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.ISBN)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.tittle)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.availability)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Price)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Genre.genreIdPK)
+    </td>
+    <td>
+        @Html.Partial("_TableButtonPartial", new IndividualButtonPartial { bookId = item.bookIdPK })
+    </td>
+</tr>
+}
+
+</table>

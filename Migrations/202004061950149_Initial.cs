@@ -18,7 +18,7 @@ namespace BookRental.Migrations
                         description = c.String(nullable: false),
                         imgUrl = c.String(nullable: false),
                         availability = c.String(nullable: false),
-                        currency = c.Double(nullable: false),
+                        Price = c.Double(nullable: false),
                         dateAdded = c.DateTime(nullable: false),
                         genreId = c.Int(nullable: false),
                         publicationDate = c.DateTime(nullable: false),

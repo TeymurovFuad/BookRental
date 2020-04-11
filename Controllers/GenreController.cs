@@ -80,6 +80,37 @@ namespace BookRental.Controllers
 			return View();
 		}
 
+		//Get: Delete
+		public ActionResult Delete(int? id)
+		{
+			if (id == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+			Genre genre = db.Genres.Find(id);
+			if (genre == null)
+			{
+				return HttpNotFound();
+			}
+			return View(genre);
+		}
+
+		//Post: Delete
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public ActionResult Delete(int id)
+		{
+			if (ModelState.IsValid)
+			{
+				//var genreId = db.Genres.FirstOrDefault(n => n.genreIdPK.Equals(genre.genreIdPK));
+				//genreId.name = genre.name;
+				Genre genre = db.Genres.Find(id);
+				db.Genres.Remove(genre);
+				db.SaveChanges();
+				return RedirectToAction("Index");
+			}
+			return View();
+		}
 
 		protected override void Dispose(bool disposing)
 		{

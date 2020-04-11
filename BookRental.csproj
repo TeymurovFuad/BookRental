@@ -171,6 +171,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\GenreController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -180,6 +181,10 @@
     <Compile Include="Migrations\202004061950149_Initial.cs" />
     <Compile Include="Migrations\202004061950149_Initial.Designer.cs">
       <DependentUpon>202004061950149_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004111309506_column name changed from Currency to Price.cs" />
+    <Compile Include="Migrations\202004111309506_column name changed from Currency to Price.designer.cs">
+      <DependentUpon>202004111309506_column name changed from Currency to Price.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -198,6 +203,10 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\51S7WTqqrsL._SX321_BO1,204,203,200_.jpg" />
+    <Content Include="Content\Images\images %281%29.jpg" />
+    <Content Include="Content\Images\images.jpg" />
+    <Content Include="Content\Images\images.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -408,6 +417,12 @@
     <Content Include="Views\Genre\Details.cshtml" />
     <Content Include="Views\Shared\_EditButtonPartial.cshtml" />
     <Content Include="Views\Genre\Edit.cshtml" />
+    <Content Include="Views\Genre\Delete.cshtml" />
+    <Content Include="Views\Book\Create.cshtml" />
+    <Content Include="Views\Book\Delete.cshtml" />
+    <Content Include="Views\Book\Details.cshtml" />
+    <Content Include="Views\Book\Edit.cshtml" />
+    <Content Include="Views\Book\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -420,6 +435,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202004061950149_Initial.resx">
       <DependentUpon>202004061950149_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004111309506_column name changed from Currency to Price.resx">
+      <DependentUpon>202004111309506_column name changed from Currency to Price.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,114 @@
+﻿@model BookRental.Views.Home.Book
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Book</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ISBN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ISBN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tittle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tittle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.author)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.author)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.imgUrl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.imgUrl)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.availability)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.availability)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dateAdded)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateAdded)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.genreId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.genreId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.publicationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.publicationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pages)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pages)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.productDimensions)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.productDimensions)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.bookIdPK }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
