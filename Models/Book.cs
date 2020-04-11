@@ -34,7 +34,8 @@ namespace BookRental.Views.Home
         [Display(Name = "Price")]
         public double Price { get; set; }
         [Required]
-        [DisplayFormat(DataFormatString ="{0: mm dd yyyy}")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString ="{0: MMM dd yyyy}")]
         [Display(Name = "Added")]
         public DateTime? dateAdded { get; set; }
         [Required]
@@ -43,7 +44,8 @@ namespace BookRental.Views.Home
         public Genre Genre { get; set; }
 
         [Required]
-        [DisplayFormat(DataFormatString = "{0: mm dd yyyy}")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0: MMM dd yyyy}")]
         [Display(Name = "Published")]
         public DateTime publicationDate { get; set; }
 

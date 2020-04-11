@@ -47,7 +47,7 @@ namespace BookRental.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "bookIdPK,ISBN,tittle,author,description,imgUrl,availability,Price,dateAdded,genreId,publicationDate,pages,productDimensions")] Book book)
+        public ActionResult Create([Bind(Include = "bookIdPK,ISBN,tittle,author,description,imgUrl,availability,currency,dateAdded,genreId,publicationDate,pages,productDimensions")] Book book)
         {
             if (ModelState.IsValid)
             {
