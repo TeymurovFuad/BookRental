@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BookRental.Models;
+using BookRental.ViewModel;
 using BookRental.Views.Home;
 
 namespace BookRental.Controllers
@@ -14,6 +15,7 @@ namespace BookRental.Controllers
     public class BookController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+
 
         // GET: Book
         public ActionResult Index()
@@ -34,14 +36,23 @@ namespace BookRental.Controllers
             {
                 return HttpNotFound();
             }
-            return View(book);
+            var mdoel = new BookViewMdoel
+            {
+                Book = book,
+                Genres = db.Genres.ToList()
+            };
+            return View(mdoel);
         }
 
         // GET: Book/Create
         public ActionResult Create()
         {
-            ViewBag.genreId = new SelectList(db.Genres, "genreIdPK", "name");
-            return View();
+            var genre = db.Genres.ToList();
+            var mdoel = new BookViewMdoel
+            {
+                Genres = genre
+            };
+            return View(mdoel);
         }
 
         // POST: Book/Create
@@ -49,8 +60,26 @@ namespace BookRental.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "bookIdPK,ISBN,tittle,author,description,imgUrl,availability,currency,dateAdded,genreId,publicationDate,pages,productDimensions")] Book book)
+        public ActionResult Create(BookViewMdoel bookVM)
         {
+            var book = new Book
+            {
+                author = bookVM.Book.author,
+                availability = bookVM.Book.availability,
+                ISBN = bookVM.Book.ISBN,
+                Price = bookVM.Book.Price,
+                publicationDate = bookVM.Book.publicationDate,
+                dateAdded = bookVM.Book.dateAdded,
+                pages = bookVM.Book.pages,
+                Genre = bookVM.Book.Genre,
+                genreId = bookVM.Book.genreId,
+                description = bookVM.Book.description,
+                imgUrl = bookVM.Book.imgUrl,
+                productDimensions = bookVM.Book.productDimensions,
+                tittle = bookVM.Book.tittle,
+                publisher = bookVM.Book.publisher
+            };
+
             if (ModelState.IsValid)
             {
                 db.Books.Add(book);
@@ -58,7 +87,8 @@ namespace BookRental.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(book);
+            bookVM.Genres = db.Genres.ToList();
+            return View(bookVM);
         }
 
         // GET: Book/Edit/5
@@ -73,7 +103,12 @@ namespace BookRental.Controllers
             {
                 return HttpNotFound();
             }
-            return View(book);
+            var model = new BookViewMdoel
+            {
+                Book = book,
+                Genres = db.Genres.ToList()
+            };
+            return View(model);
         }
 
         // POST: Book/Edit/5
@@ -81,15 +116,34 @@ namespace BookRental.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "bookIdPK,ISBN,tittle,author,description,imgUrl,availability,Price,dateAdded,genreId,publicationDate,pages,productDimensions")] Book book)
+        public ActionResult Edit(BookViewMdoel bookVM)
         {
+            var book = new Book
+            {
+                author = bookVM.Book.author,
+                availability = bookVM.Book.availability,
+                ISBN = bookVM.Book.ISBN,
+                Price = bookVM.Book.Price,
+                publicationDate = bookVM.Book.publicationDate,
+                dateAdded = bookVM.Book.dateAdded,
+                pages = bookVM.Book.pages,
+                Genre = bookVM.Book.Genre,
+                genreId = bookVM.Book.genreId,
+                description = bookVM.Book.description,
+                imgUrl = bookVM.Book.imgUrl,
+                productDimensions = bookVM.Book.productDimensions,
+                tittle = bookVM.Book.tittle,
+                bookIdPK = bookVM.Book.bookIdPK,
+                publisher = bookVM.Book.publisher
+            };
             if (ModelState.IsValid)
             {
                 db.Entry(book).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(book);
+            bookVM.Genres = db.Genres.ToList();
+            return View(bookVM);
         }
 
         // GET: Book/Delete/5
@@ -104,7 +158,12 @@ namespace BookRental.Controllers
             {
                 return HttpNotFound();
             }
-            return View(book);
+            var model = new BookViewMdoel
+            {
+                Book = book,
+                Genres = db.Genres.ToList()
+            };
+            return View(model);
         }
 
         // POST: Book/Delete/5
