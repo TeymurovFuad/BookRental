@@ -12,7 +12,7 @@ namespace BookRental.Models
         [Key]
         public int membershipTypesIdPK { get; set; }
         [Required]
-        [Display(Name = "Name")]
+        [Display(Name = "Type")]
         public string name { get; set; }
         [Required]
         [DataType(DataType.Currency)]

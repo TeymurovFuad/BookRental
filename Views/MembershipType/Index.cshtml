@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<BookRental.Models.MembershipTypes>
-
+@using BookRental.Models
 @{
     ViewBag.Title = "Index";
 }
@@ -7,45 +7,47 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.Partial("_CreateButtonPartial")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SignUpFee)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.chargeRateOneMonth)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.chargeRateSixMonth)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SignUpFee)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.chargeRateOneMonth)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.chargeRateSixMonth)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.membershipTypesIdPK }) |
-            @Html.ActionLink("Details", "Details", new { id=item.membershipTypesIdPK }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.membershipTypesIdPK })
-        </td>
-    </tr>
-}
-
+<table class="table table-hover table-responsive-lg">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.SignUpFee)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.chargeRateOneMonth)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.chargeRateSixMonth)
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="font-weight-bold">
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.SignUpFee)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.chargeRateOneMonth)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.chargeRateSixMonth)
+                </td>
+                <td class="text-center">
+                    @Html.Partial("_TableButtonPartial", new IndividualButtonPartial { membershipTypeId = item.membershipTypesIdPK })
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>

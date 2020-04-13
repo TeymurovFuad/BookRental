@@ -4,47 +4,57 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <h3 class="text-center text-info m-3"><span class="fa fa-user"></span>&nbsp;<span class="fa fa-info"></span></h3>
 
-<div>
-    <h4>MembershipTypes</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.name)
-        </dt>
+    <h3 class="text-primary text-center">Details of <span class="text-success">@Model.name</span> type</h3>
+    <div>
+        <hr />
 
-        <dd>
-            @Html.DisplayFor(model => model.name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SignUpFee)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SignUpFee)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.chargeRateOneMonth)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.chargeRateOneMonth)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.chargeRateSixMonth)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.chargeRateSixMonth)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.membershipTypesIdPK }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+        <fieldset disabled>
+            <div class="form-border">
+                <div class="border rounded border-primary p-2 font-weight-bold text-info">
+                    <div class="row my-2">
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-md">
+                            @Html.TextBoxFor(model => model.name, htmlAttributes: new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => model.SignUpFee, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-md">
+                            @Html.TextBoxFor(model => model.SignUpFee, htmlAttributes: new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => model.chargeRateOneMonth, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-md">
+                            @Html.TextBoxFor(model => model.chargeRateOneMonth, htmlAttributes: new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => model.chargeRateSixMonth, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-md">
+                            @Html.TextBoxFor(model => model.chargeRateSixMonth, htmlAttributes: new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <br />
+        <div class="form-actions no-color">
+            @Html.Partial("_EditButtonPartial", Model.membershipTypesIdPK)
+            @Html.Partial("_BackToListButtonPartial")
+        </div>
+    </div>
+}
