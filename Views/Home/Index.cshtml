@@ -1,3 +1,25 @@
-﻿@{
+﻿@model IEnumerable<BookRental.ViewModel.ThumbnailBoxViewModel>
+@{
     ViewBag.Title = "Home Page";
 }
+
+<div class="row">
+    <div class="float-right pr-4">
+        <div class="btn-group">
+            <button type="submit" placeholder="Search" class="btn btn-sm btn-primary">
+                <span class="fa fa-search"></span>
+            </button>
+        </div>
+    </div>
+    <div class="float-right">
+        @Html.Editor("search", new { htmlattributes = new { @class = "form-control input-sm" } })
+    </div>
+</div>
+<br />
+
+<div class="row">
+    @foreach(var area in Model)
+    {
+        @Html.Partial("_ThumbnailAreaPartial", area);
+    }
+</div>

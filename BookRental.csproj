@@ -176,6 +176,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MembershipTypeController.cs" />
+    <Compile Include="Extensions\ThumbnailExtension.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -195,6 +196,10 @@
     <Compile Include="Migrations\202004122111394_Added membershiptype to database.designer.cs">
       <DependentUpon>202004122111394_Added membershiptype to database.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004132105260_add fields to membership table.cs" />
+    <Compile Include="Migrations\202004132105260_add fields to membership table.designer.cs">
+      <DependentUpon>202004132105260_add fields to membership table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Genre.cs" />
@@ -202,10 +207,12 @@
     <Compile Include="Models\IndividualButtonPartial.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MembershipTypes.cs" />
+    <Compile Include="Models\ThumbnailModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="ViewModel\BookViewMdoel.cs" />
+    <Compile Include="ViewModel\ThumbnailBoxViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-grid.css" />
@@ -218,6 +225,7 @@
     <Content Include="Content\Images\images %281%29.jpg" />
     <Content Include="Content\Images\images.jpg" />
     <Content Include="Content\Images\images.png" />
+    <Content Include="Content\thumbnail.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -439,6 +447,7 @@
     <Content Include="Views\MembershipType\Details.cshtml" />
     <Content Include="Views\MembershipType\Edit.cshtml" />
     <Content Include="Views\MembershipType\Index.cshtml" />
+    <Content Include="Views\Shared\_ThumbnailAreaPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -460,6 +469,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004122111394_Added membershiptype to database.resx">
       <DependentUpon>202004122111394_Added membershiptype to database.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004132105260_add fields to membership table.resx">
+      <DependentUpon>202004132105260_add fields to membership table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
