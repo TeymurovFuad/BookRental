@@ -5,7 +5,7 @@
 }
 <br />
 
-<h2 class="text-right"><span class="fa fa-trash"></span>&nbsp;<span class="fa fa-book"></span></h2>
+<h2 class="table-warning text-center"><span class="fa fa-trash"></span>&nbsp;<span class="fa fa-book"></span></h2>
 <h3 class="font-weight-bold">Are you sure you want to delete <span class="text-danger">@Model.Book.tittle</span><span class="fa fa-question"></span></h3>
 @using (Html.BeginForm())
 {
@@ -46,7 +46,8 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.Book.description, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.Book.description, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.TextAreaFor(model => model.Book.description, new { @class = "form-control", style = "height: 250px" })
+                            @*@Html.EditorFor(model => model.Book.description, new { htmlAttributes = new { @class = "form-control" } })*@
                             @Html.ValidationMessageFor(model => model.Book.description, "", new { @class = "text-danger" })
                         </div>
                     </div>

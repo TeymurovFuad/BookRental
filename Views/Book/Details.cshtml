@@ -5,6 +5,7 @@
 }
 
     <h2 class="table-info text-center"><span class="fa fa-book"></span>&nbsp;<span class="fa fa-info"></span></h2>
+    <h2>Book Info</h2>
 
 <div class="form-horizontal">
     <hr />
@@ -42,7 +43,8 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Book.description, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.TextAreaFor(model => model.Book.description, new {@class = "form-control w-10 h-auto", Style="overflow: auto; resize: vertical;"})
+                    @Html.TextAreaFor(model => model.Book.description, new { @class = "form-control", style = "height: 250px" })
+                    @*@Html.TextAreaFor(model => model.Book.description, new { @class = "form-control w-10 h-auto", Style = "overflow: auto; resize: vertical;" })*@
                     @Html.ValidationMessageFor(model => model.Book.description, "", new { @class = "text-danger" })
                 </div>
             </div>

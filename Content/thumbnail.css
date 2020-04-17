@@ -1,1 +1,26 @@
-﻿
+﻿.img-thumbnail .thumbnail-img-container {
+    overflow: hidden;
+}
+
+.img-thumbnail .card-img-top {
+    width: 100%;
+    height: auto;
+    transition: ease-in-out all 0.4s;
+}
+
+.img-thumbnail .a, a:focus, a:hover, a:active {
+    outline: opx none !important;
+}
+
+.img-thumbnail {
+    transition: all 0.4s ease-in-out 0s;
+}
+
+    .img-thumbnail:hover {
+        box-shadow: 0px 0px 8px #555;
+        transition: box-shadow o.2s ease-in-out 0s;
+    }
+
+        .img-thumbnail :hover img {
+            transform: scale(1.05) rotate(1deg);
+        }
