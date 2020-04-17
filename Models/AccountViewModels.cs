@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using BookRental.Extensions;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace BookRental.Models
@@ -79,6 +81,33 @@ namespace BookRental.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        public int? disable { get; set; }
+
+        public ICollection<MembershipTypes> membershipTypes { get; set; }
+
+        [Required]
+        [Display(Name = "Membership Types")]
+        public int membershipTypeId { get; set; }
+
+        [Required]
+        [Display(Name = "First Name")]
+        public string fname { get; set; }
+
+        [Required]
+        [Display(Name = "Last Name")]
+        public string lname { get; set; }
+
+        [Required]
+        [Display(Name = "Phone")]
+        public string phone { get; set; }
+
+        [Required]
+        [DateRange("01/01/1900")]
+        [Display(Name = "Birth Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString ="{0: MM dd yyyy}")]
+        public DateTime bdate { get; set; }
     }
 
     public class ResetPasswordViewModel

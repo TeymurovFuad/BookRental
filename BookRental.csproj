@@ -176,6 +176,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MembershipTypeController.cs" />
+    <Compile Include="Extensions\DateRangeAttribute.cs" />
     <Compile Include="Extensions\ThumbnailExtension.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -199,6 +200,10 @@
     <Compile Include="Migrations\202004132105260_add fields to membership table.cs" />
     <Compile Include="Migrations\202004132105260_add fields to membership table.designer.cs">
       <DependentUpon>202004132105260_add fields to membership table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004172213361_Added new fields to user registration view.cs" />
+    <Compile Include="Migrations\202004172213361_Added new fields to user registration view.designer.cs">
+      <DependentUpon>202004172213361_Added new fields to user registration view.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -472,6 +477,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004132105260_add fields to membership table.resx">
       <DependentUpon>202004132105260_add fields to membership table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004172213361_Added new fields to user registration view.resx">
+      <DependentUpon>202004172213361_Added new fields to user registration view.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
