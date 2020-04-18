@@ -40,7 +40,7 @@
     <div class="form-group">
         @Html.LabelFor(m => m.bdate, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.bdate, "{0:dd/MM/yyyy}", new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.bdate, "{0:dd/MM/yyyy}", new { @class = "form-control", @type = "date"})
         </div>
     </div>
 
@@ -54,9 +54,9 @@
 
     //Membership Type
     <div class="form-group">
-        @Html.LabelFor(m => m.membershipTypeId,  new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.membershipTypeId, "membershipTypeId",  new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.DropDownListFor(m => m.bdate, new SelectList(Model.membershipTypes, "membershipTypesIdPK", "name"), new { @class = "form-control" })
+            @Html.DropDownListFor(m => m.membershipTypeId, new SelectList(Model.membershipTypes, "membershipTypesIdPK", "name"), new { @class = "form-control" })
         </div>
     </div>
 

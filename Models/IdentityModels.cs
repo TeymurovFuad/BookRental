@@ -16,7 +16,7 @@ namespace BookRental.Models
         public string lname { get; set; }
         public string phone { get; set; }
         public DateTime bdate { get; set; }
-        public int disabled { get; set; }
+        public bool disabled { get; set; }
         public int membershipTypeId { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

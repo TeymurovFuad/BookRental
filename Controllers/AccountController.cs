@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using BookRental.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
+using BookRental.Utility;
 
 namespace BookRental.Controllers
 {
@@ -159,10 +161,38 @@ namespace BookRental.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { 
+                    UserName = model.Email, 
+                    Email = model.Email,
+                    bdate = model.bdate,
+                    fname = model.fname, lname = model.lname,
+                    phone = model.phone,
+                    membershipTypeId = model.membershipTypeId,
+                    disabled = false
+                };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    using (var db = ApplicationDbContext.Create()) {
+                        model.membershipTypes = db.MembershipTypes.ToList();
+                        var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
+                        var roleManager = new RoleManager<IdentityRole>(roleStore);
+                        var membership = model.membershipTypes.SingleOrDefault(m => m.membershipTypesIdPK == model.membershipTypeId).name.ToString();
+
+                        if (membership.ToLower().Contains("admin"))
+                        {
+                            //For SuperAdmin
+                            await roleManager.CreateAsync(new IdentityRole(SD.adminUserRole));
+                            await UserManager.AddToRoleAsync(user.Id, SD.adminUserRole);
+                        }
+                        else
+                        {
+                            //For Customer
+                            await roleManager.CreateAsync(new IdentityRole(SD.endUserRole));
+                            await UserManager.AddToRoleAsync(user.Id, SD.endUserRole);
+                        }
+                    };
+
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771

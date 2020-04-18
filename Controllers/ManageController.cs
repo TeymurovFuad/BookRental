@@ -32,9 +32,9 @@ namespace BookRental.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -64,14 +64,90 @@ namespace BookRental.Controllers
                 : "";
 
             var userId = User.Identity.GetUserId();
-            var model = new IndexViewModel
+
+            using (var db = ApplicationDbContext.Create())
             {
-                HasPassword = HasPassword(),
-                PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
-                TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
-                Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
-            };
+                var usersInDB = db.Users.First(u => u.Id.Equals(userId));
+
+                var model = new IndexViewModel
+                {
+                    HasPassword = HasPassword(),
+                    PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
+                    TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
+                    Logins = await UserManager.GetLoginsAsync(userId),
+                    BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
+                    fname = usersInDB.fname,
+                    lname = usersInDB.lname,
+                    phone = usersInDB.phone,
+                    bdate = usersInDB.bdate,
+                    mail = usersInDB.Email,
+                    membershipTypeID = usersInDB.Id,
+                    membershipTypeId = usersInDB.membershipTypeId,
+                    MembershipTypes = db.MembershipTypes.ToList()
+                };
+                return View(model);
+            }
+        }
+
+
+        //
+        // GET: /Manage/Edit
+        public async Task<ActionResult> Edit()
+        {
+           
+            var userId = User.Identity.GetUserId();
+
+            using (var db = ApplicationDbContext.Create())
+            {
+                var usersInDB = db.Users.First(u => u.Id.Equals(userId));
+
+                var model = new IndexViewModel
+                {
+                    HasPassword = HasPassword(),
+                    PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
+                    TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
+                    Logins = await UserManager.GetLoginsAsync(userId),
+                    BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
+                    fname = usersInDB.fname,
+                    lname = usersInDB.lname,
+                    phone = usersInDB.phone,
+                    bdate = usersInDB.bdate,
+                    mail = usersInDB.Email,
+                    membershipTypeID = usersInDB.Id,
+                    membershipTypeId = usersInDB.membershipTypeId,
+                    MembershipTypes = db.MembershipTypes.ToList()
+                };
+                return View(model);
+            }
+        }
+
+
+        //
+        // POST: /Manage/Edit
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(IndexViewModel model)
+        {
+            using(var db = ApplicationDbContext.Create())
+            {
+                if (ModelState.IsValid)
+                {
+                    var userInDB = db.Users.First(u => u.Id.Equals(model.membershipTypeID));
+                    userInDB.fname = model.fname;
+                    userInDB.lname = model.lname;
+                    userInDB.phone = model.phone;
+                    userInDB.Email = model.mail;
+                    userInDB.bdate = model.bdate;
+
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    model.MembershipTypes = db.MembershipTypes.ToList();
+                }
+            }
             return View(model);
         }
 
@@ -333,7 +409,7 @@ namespace BookRental.Controllers
             base.Dispose(disposing);
         }
 
-#region Helpers
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -384,6 +460,6 @@ namespace BookRental.Controllers
             Error
         }
 
-#endregion
+        #endregion
     }
 }

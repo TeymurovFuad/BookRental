@@ -1,45 +1,28 @@
 ﻿@model BookRental.Models.IndexViewModel
 @{
-    ViewBag.Title = "Manage";
+    ViewBag.Title = "Edit";
 }
 
-<h2>@ViewBag.Title.</h2>
 
-<div>
-    <hr />
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div>
+        <h2>Change Credentials</h2>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
+        @Html.HiddenFor(m => m.membershipTypeId)
 
-    <div class="form-horizontal">
-        <div class="border rounded">
-            <div class="col-md-10">
-                @if (Model.HasPassword)
-                {
-                    <a type="button" class="btn btn-sm btn-primary" href="@Url.Action("ChangePassword")">
-                        <span class="text">Change Password</span>
-                    </a>
-                }
-                else
-                {
-                    <a type="button" class="btn btn-sm btn-primary" href="@Url.Action("SetPassword")">
-                        <span class="text">Create Password</span>
-                    </a>
-                }
-
-                &nbsp;
-                &nbsp;
-
-                <a type="button" class="btn btn-sm btn-primary" href="@Url.Action("ManageLogins")">
-                    <span class="text">Manage External Logins</span>
-                </a>
-            </div>
-
-            <fieldset disabled>
+        <div class="form-horizontal">
+            <div class="border rounded">
 
                 @*First Name*@
                 <div class="form-group">
                     @Html.LabelFor(m => m.fname, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(m => m.fname, new { htmlattributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(m => m.fname, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
@@ -48,6 +31,7 @@
                     @Html.LabelFor(m => m.lname, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(m => m.lname, new { htmlattributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(m => m.lname, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
@@ -56,6 +40,7 @@
                     @Html.LabelFor(m => m.bdate, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.TextBoxFor(m => m.bdate, "{0: MM/dd/yyyy}", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.bdate, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
@@ -64,6 +49,7 @@
                     @Html.LabelFor(m => m.phone, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(m => m.phone, new { htmlattributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(m => m.phone, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
@@ -72,22 +58,28 @@
                     @Html.LabelFor(m => m.mail, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(m => m.mail, new { htmlattributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(m => m.mail, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
-                @*Membership Type*@
-                <div class="form-group">
-                    @Html.LabelFor(m => m.membershipTypeID, "membershipTypeId", new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.DropDownListFor(m => m.membershipTypeID, new SelectList(Model.MembershipTypes, "membershipTypesIdPK", "name"), new { @class = "form-control" })
+                <fieldset disabled>
+                    @*Membership Type*@
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.membershipTypeID, "Membership Type", new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(m => m.membershipTypeID, new SelectList(Model.MembershipTypes, "membershipTypesIdPK", "name"), new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.membershipTypeID, "", new { @class = "text-danger" })
+                        </div>
                     </div>
+                </fieldset>
+                <br />
+                <div class="offset-md-2">
+                    <a type="button" href="@Url.Action("Index")" class="btn btn-sm btn-primary">
+                        <span class="text-capitalize">back to profile</span>
+                    </a>
+                    <input type="submit" value="Update Details" class="btn btn-sm btn-success" />
                 </div>
-
-            </fieldset>
-            <br />
-            <div class="offset-md-2">
-                @Html.ActionLink("Edit", "Edit", "Manage", null, new { @class = "btn btn-sm btn-success" })
             </div>
         </div>
     </div>
-</div>
+}
