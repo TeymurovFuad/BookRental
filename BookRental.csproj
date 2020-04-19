@@ -176,6 +176,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MembershipTypeController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Extensions\DateRangeAttribute.cs" />
     <Compile Include="Extensions\ThumbnailExtension.cs" />
     <Compile Include="Global.asax.cs">
@@ -209,6 +210,10 @@
     <Compile Include="Migrations\202004181341102_IdentityUser.disableb changed from int to bool.designer.cs">
       <DependentUpon>202004181341102_IdentityUser.disableb changed from int to bool.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004192103374_changed key with the same name.cs" />
+    <Compile Include="Migrations\202004192103374_changed key with the same name.designer.cs">
+      <DependentUpon>202004192103374_changed key with the same name.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Genre.cs" />
@@ -223,6 +228,7 @@
     <Compile Include="Utility\SD.cs" />
     <Compile Include="ViewModel\BookViewMdoel.cs" />
     <Compile Include="ViewModel\ThumbnailBoxViewModel.cs" />
+    <Compile Include="ViewModel\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-grid.css" />
@@ -459,6 +465,7 @@
     <Content Include="Views\MembershipType\Index.cshtml" />
     <Content Include="Views\Shared\_ThumbnailAreaPartial.cshtml" />
     <Content Include="Views\Manage\Edit.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -489,6 +496,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004181341102_IdentityUser.disableb changed from int to bool.resx">
       <DependentUpon>202004181341102_IdentityUser.disableb changed from int to bool.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004192103374_changed key with the same name.resx">
+      <DependentUpon>202004192103374_changed key with the same name.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

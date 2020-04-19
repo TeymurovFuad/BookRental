@@ -1,0 +1,72 @@
+﻿@model IEnumerable<BookRental.Models.UserViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Genre</h2>
+
+@Html.Partial("_CreateButtonPartial")
+
+<br />
+<br />
+<br />
+
+<table class="table table-hover">
+    <thead class="thead-dark">
+        <tr class="row">
+            <th class="col">
+                @Html.DisplayNameFor(m => m.fname)
+            </th>
+            <th class="col">
+
+                @Html.DisplayNameFor(m => m.lname)
+            </th>
+            <th class="col">
+
+                @Html.DisplayNameFor(m => m.email)
+            </th>
+            <th class="col">
+
+                @Html.DisplayNameFor(m => m.bdate)
+            </th>
+            <th class="col">
+
+                @Html.DisplayNameFor(m => m.phone)
+            </th>
+            <th class="col">
+                @Html.DisplayNameFor(m => m.disabled)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="row">
+                <td class="col">
+                    @Html.DisplayNameFor(m => item.fname)
+                </td>
+                <td class="col">
+
+                    @Html.DisplayNameFor(m => item.lname)
+                </td>
+                <td class="col">
+
+                    @Html.DisplayNameFor(m => item.email)
+                </td>
+                <td class="col">
+
+                    @Html.DisplayNameFor(m => item.bdate)
+                </td>
+                <td class="col">
+
+                    @Html.DisplayNameFor(m => item.phone)
+                </td>
+                <td class="col">
+                    @Html.DisplayNameFor(m => item.disabled)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

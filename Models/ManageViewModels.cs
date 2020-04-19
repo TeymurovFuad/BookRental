@@ -30,7 +30,7 @@ namespace BookRental.Models
 
         [Required]
         [Display(Name = "Membership Type")]
-        public string id { get; set; }
+        public string manageId { get; set; }
 
         [Required]
         [DataType(DataType.EmailAddress)]

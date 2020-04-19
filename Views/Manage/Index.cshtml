@@ -9,9 +9,10 @@
     <hr />
 
 
-    <div class="form-horizontal">
+    <div class="form-horizontal font-weight-bold">
         <div class="border rounded">
-            <div class="col-md-10">
+            <br />
+            <div class="offset-1 col-md-9">
                 @if (Model.HasPassword)
                 {
                     <a type="button" class="btn btn-sm btn-primary" href="@Url.Action("ChangePassword")">
@@ -32,61 +33,61 @@
                     <span class="text">Manage External Logins</span>
                 </a>
             </div>
+            <br />
 
             <fieldset disabled>
 
                 @*First Name*@
-                <div class="form-group">
-                    @Html.LabelFor(m => m.fname, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.fname, htmlAttributes: new { @class = "control-label offset-1 col-md-2 col-form-label" })
+                    <div class="col-md-9">
                         @Html.EditorFor(m => m.fname, new { htmlattributes = new { @class = "form-control" } })
                     </div>
                 </div>
 
                 @*Last Name*@
-                <div class="form-group">
-                    @Html.LabelFor(m => m.lname, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
+                <div class="form-group row row">
+                    @Html.LabelFor(m => m.lname, htmlAttributes: new { @class = "control-label offset-1 col-md-2 col-form-label" })
+                    <div class="col-md-9">
                         @Html.EditorFor(m => m.lname, new { htmlattributes = new { @class = "form-control" } })
                     </div>
                 </div>
 
                 @*Birthday*@
-                <div class="form-group">
-                    @Html.LabelFor(m => m.bdate, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.bdate, htmlAttributes: new { @class = "control-label offset-1 col-md-2 col-form-label" })
+                    <div class="col-md-9">
                         @Html.TextBoxFor(m => m.bdate, "{0: MM/dd/yyyy}", new { @class = "form-control" })
                     </div>
                 </div>
 
                 @*Phone*@
-                <div class="form-group">
-                    @Html.LabelFor(m => m.phone, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.phone, htmlAttributes: new { @class = "control-label offset-1 col-md-2 col-form-label" })
+                    <div class="col-md-9">
                         @Html.EditorFor(m => m.phone, new { htmlattributes = new { @class = "form-control" } })
                     </div>
                 </div>
 
                 @*Email Adress*@
-                <div class="form-group">
-                    @Html.LabelFor(m => m.mail, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.mail, htmlAttributes: new { @class = "control-label offset-1 col-md-2 col-form-label" })
+                    <div class="col-md-9">
                         @Html.EditorFor(m => m.mail, new { htmlattributes = new { @class = "form-control" } })
                     </div>
                 </div>
 
                 @*Membership Type*@
-                <div class="form-group">
-                    @Html.LabelFor(m => m.id, "Membership Type", new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.id, "Membership Type", new { @class = "control-label offset-1 col-md-2 col-form-label" })
+                    <div class="col-md-9">
                         @Html.DropDownListFor(m => m.id, new SelectList(Model.MembershipTypes, "membershipTypesIdPK", "name"), new { @class = "form-control" })
                     </div>
                 </div>
 
             </fieldset>
-            <br />
-            <div class="offset-md-2">
-                @Html.ActionLink("Edit", "Edit", "Manage", null, new { @class = "btn btn-sm btn-success" })
+            <div class="">
+                @Html.ActionLink("Edit", "Edit", "Manage", null, new { @class = "btn btn-sm btn-success offset-3" })
             </div>
         </div>
     </div>

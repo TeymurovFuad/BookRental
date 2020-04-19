@@ -17,6 +17,7 @@ namespace BookRental.Models
         public string phone { get; set; }
         public DateTime bdate { get; set; }
         public bool disabled { get; set; }
+        public int identityId { get; set; }
         public int membershipTypeId { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
@@ -41,5 +42,7 @@ namespace BookRental.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<BookRental.Models.UserViewModel> UserViewModels { get; set; }
     }
 }
