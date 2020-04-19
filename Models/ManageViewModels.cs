@@ -18,19 +18,19 @@ namespace BookRental.Models
         public int membershipTypeId { get; set; }
         [Display(Name = "First Name")]
         public string fname { get; set; }
-        [Display(Name = "First Name")]
+        [Display(Name = "Last Name")]
         public string lname { get; set; }
         [Display(Name = "Phone")]
         public string phone { get; set; }
 
         [DataType(DataType.Date)]
         [Display(Name = "Birth Date")]
-        [DisplayFormat(DataFormatString = "{0:MMM dd yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:MM dd yyyy}")]
         public DateTime bdate { get; set; }
 
         [Required]
         [Display(Name = "Membership Type")]
-        public string membershipTypeID { get; set; }
+        public string id { get; set; }
 
         [Required]
         [DataType(DataType.EmailAddress)]
