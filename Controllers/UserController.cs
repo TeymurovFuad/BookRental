@@ -1,4 +1,5 @@
 ﻿using BookRental.Models;
+using BookRental.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,7 @@ namespace BookRental.Controllers
                        join m in db.MembershipTypes on u.membershipTypeId equals m.membershipTypesIdPK
                        select new UserViewModel
                        {
-                           userIdPK = u.membershipTypeId,
+                           Id = u.Id,
                            fname = u.fname,
                            lname = u.lname,
                            email = u.Email,
@@ -39,7 +40,7 @@ namespace BookRental.Controllers
 
                        };
 
-            var usersList = user.ToList();
+            List<UserViewModel> usersList = user.ToList();
 
 
             return View(usersList);
@@ -67,6 +68,7 @@ namespace BookRental.Controllers
                 email = user.Email,
                 phone = user.phone,
                 bdate = user.bdate,
+                Id = user.Id,
                 userMemTypeId = user.membershipTypeId,
                 MembershipTypes = db.MembershipTypes.ToList(),
                 disabled = user.disabled
@@ -88,6 +90,7 @@ namespace BookRental.Controllers
                     email = user.email,
                     phone = user.phone,
                     bdate = user.bdate,
+                    Id = user.Id,
                     userMemTypeId = user.userMemTypeId,
                     MembershipTypes = db.MembershipTypes.ToList(),
                     disabled = user.disabled
@@ -96,7 +99,7 @@ namespace BookRental.Controllers
             }
             else
             {
-                var userInDB = db.Users.Single(u => u.identityId == user.userIdPK);
+                var userInDB = db.Users.Single(u => u.Id == user.Id);
 
                 userInDB.fname = user.fname;
                 userInDB.lname = user.lname;
@@ -165,7 +168,7 @@ namespace BookRental.Controllers
         public ActionResult DeleteConfirm(string id)
         {
             var userInDB = db.Users.Find(id);
-            if(id == null || id.Length == 0)
+            if (id == null || id.Length == 0)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }

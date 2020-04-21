@@ -79,9 +79,9 @@
 
                 @*Membership Type*@
                 <div class="form-group row">
-                    @Html.LabelFor(m => m.id, "Membership Type", new { @class = "control-label offset-1 col-md-2 col-form-label" })
+                    @Html.LabelFor(m => m.membershipTypeId, "Membership Type", new { @class = "control-label offset-1 col-md-2 col-form-label" })
                     <div class="col-md-9">
-                        @Html.DropDownListFor(m => m.id, new SelectList(Model.MembershipTypes, "membershipTypesIdPK", "name"), new { @class = "form-control" })
+                        @Html.DropDownListFor(m => m.membershipTypeId, new SelectList(Model.MembershipTypes, "membershipTypesIdPK", "name"), new { @class = "form-control" })
                     </div>
                 </div>
 

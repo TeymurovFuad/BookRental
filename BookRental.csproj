@@ -214,6 +214,10 @@
     <Compile Include="Migrations\202004192103374_changed key with the same name.designer.cs">
       <DependentUpon>202004192103374_changed key with the same name.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004192225509_Added some shits.cs" />
+    <Compile Include="Migrations\202004192225509_Added some shits.designer.cs">
+      <DependentUpon>202004192225509_Added some shits.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Genre.cs" />
@@ -499,6 +503,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004192103374_changed key with the same name.resx">
       <DependentUpon>202004192103374_changed key with the same name.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004192225509_Added some shits.resx">
+      <DependentUpon>202004192225509_Added some shits.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

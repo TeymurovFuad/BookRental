@@ -12,7 +12,8 @@
                 genreId = Model.genreId,
                 bookId = Model.bookId,
                 customerId = Model.customerId,
-                membershipTypeId = Model.membershipTypeId
+                membershipTypeId = Model.membershipTypeId,
+                userId = Model.userId
             })
         @Html.Partial("_IndividualButtonPartial",
         new IndividualButtonPartial
@@ -23,18 +24,20 @@
             genreId = Model.genreId,
             bookId = Model.bookId,
             customerId = Model.customerId,
-            membershipTypeId = Model.membershipTypeId
+            membershipTypeId = Model.membershipTypeId,
+            userId = Model.userId
         })
-         @Html.Partial("_IndividualButtonPartial",
-        new IndividualButtonPartial
-        {
-            action = "Delete",
-            buttonType = "danger",
-            icon = "trash",
-            genreId = Model.genreId,
-            bookId = Model.bookId,
-            customerId = Model.customerId,
-            membershipTypeId = Model.membershipTypeId
-        })
+        @Html.Partial("_IndividualButtonPartial",
+       new IndividualButtonPartial
+       {
+           action = "Delete",
+           buttonType = "danger",
+           icon = "trash",
+           genreId = Model.genreId,
+           bookId = Model.bookId,
+           customerId = Model.customerId,
+           membershipTypeId = Model.membershipTypeId,
+           userId = Model.userId
+       })
     </div>
 </td>

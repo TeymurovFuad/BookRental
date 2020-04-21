@@ -29,8 +29,7 @@ namespace BookRental.Models
         public DateTime bdate { get; set; }
 
         [Required]
-        [Display(Name = "Membership Type")]
-        public string manageId { get; set; }
+        public string Id { get; set; }
 
         [Required]
         [DataType(DataType.EmailAddress)]

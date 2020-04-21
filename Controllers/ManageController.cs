@@ -81,7 +81,6 @@ namespace BookRental.Controllers
                     phone = usersInDB.phone,
                     bdate = usersInDB.bdate,
                     mail = usersInDB.Email,
-                    manageId = usersInDB.Id,
                     membershipTypeId = usersInDB.membershipTypeId,
                     MembershipTypes = db.MembershipTypes.ToList()
                 };
@@ -113,7 +112,7 @@ namespace BookRental.Controllers
                     phone = usersInDB.phone,
                     bdate = usersInDB.bdate,
                     mail = usersInDB.Email,
-                    manageId = usersInDB.Id,
+                    Id = usersInDB.Id,
                     membershipTypeId = usersInDB.membershipTypeId,
                     MembershipTypes = db.MembershipTypes.ToList()
                 };
@@ -133,7 +132,7 @@ namespace BookRental.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var userInDB = db.Users.First(u => u.Id.Equals(model.manageId));
+                    var userInDB = db.Users.First(u => u.Id.Equals(model.Id));
                     userInDB.fname = model.fname;
                     userInDB.lname = model.lname;
                     userInDB.phone = model.phone;
