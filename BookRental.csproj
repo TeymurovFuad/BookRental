@@ -58,6 +58,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -217,6 +218,10 @@
     <Compile Include="Migrations\202004192225509_Added some shits.cs" />
     <Compile Include="Migrations\202004192225509_Added some shits.designer.cs">
       <DependentUpon>202004192225509_Added some shits.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004222239250_test.cs" />
+    <Compile Include="Migrations\202004222239250_test.designer.cs">
+      <DependentUpon>202004222239250_test.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -506,6 +511,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004192225509_Added some shits.resx">
       <DependentUpon>202004192225509_Added some shits.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004222239250_test.resx">
+      <DependentUpon>202004222239250_test.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -24,7 +24,7 @@ namespace BookRental.Controllers
         // GET: User/Index
         public ActionResult Index()
         {
-            var user = from u in db.Users
+            var userList = (from u in db.Users
                        join m in db.MembershipTypes on u.membershipTypeId equals m.membershipTypesIdPK
                        select new UserViewModel
                        {
@@ -35,15 +35,12 @@ namespace BookRental.Controllers
                            phone = u.phone,
                            bdate = u.bdate,
                            userMemTypeId = u.membershipTypeId,
-                           MembershipTypes = (ICollection<MembershipTypes>)db.MembershipTypes.ToList().Where(n => n.membershipTypesIdPK.Equals(u.membershipTypeId)),
+                           //MembershipTypes = (ICollection<MembershipTypes>)db.MembershipTypes.ToList().Where(n => n.membershipTypesIdPK.Equals(u.membershipTypeId)),
                            disabled = u.disabled
 
-                       };
+                       }).ToList();
 
-            List<UserViewModel> usersList = user.ToList();
-
-
-            return View(usersList);
+            return View(userList);
         }
 
 
