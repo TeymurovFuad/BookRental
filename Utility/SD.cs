@@ -5,7 +5,7 @@ using System.Web;
 
 namespace BookRental.Utility
 {
-    public class SD
+    public static class SD
     {
         public const string endUserRole = "Customer";
         public const string adminUserRole = "SuperAdmin";

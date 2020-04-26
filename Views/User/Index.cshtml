@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<BookRental.ViewModel.UserViewModel>
+
 @using BookRental.Models
     @{
         ViewBag.Title = "Index";
@@ -44,23 +45,23 @@
             {
                 <tr class="row">
                     <td class="col">
-                        @Html.DisplayNameFor(item => item.fname)
+                        @Html.DisplayFor(m => item.fname)
                     </td>
                     <td class="col">
 
-                        @Html.DisplayNameFor(item => item.lname)
+                        @Html.DisplayFor(m => item.lname)
                     </td>
                     <td class="col">
 
-                        @Html.DisplayNameFor(item => item.email)
+                        @Html.DisplayFor(m => item.email)
                     </td>
                     <td class="col">
 
-                        @Html.DisplayNameFor(item => item.bdate)
+                        @Html.DisplayFor(m => item.bdate)
                     </td>
                     <td class="col">
 
-                        @Html.DisplayNameFor(item => item.phone)
+                        @Html.DisplayFor(m => item.phone)
                     </td>
                     <td class="col">
                         @Html.CheckBoxFor(m => item.disabled, new { @class = "disabled" })

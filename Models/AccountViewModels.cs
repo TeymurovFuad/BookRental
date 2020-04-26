@@ -9,7 +9,21 @@ namespace BookRental.Models
     {
         [Required]
         [Display(Name = "Email")]
-        public string Email { get; set; }
+        public string email { get; set; }
+
+        public string phone { get; set; }
+
+        [Required]
+        [Display(Name = "Birth Date")]
+        [DataType(DataType.Date)]
+        [DateRange("01/01/1900")]
+        public DateTime bdate { get; set; }
+        public bool? disable { get; set; }
+
+        public ICollection<MembershipTypes> membershipTypes { get; set; }
+
+        [Required]
+        public int membershipTypeId { get; set; }
     }
 
     public class ExternalLoginListViewModel
@@ -84,6 +98,7 @@ namespace BookRental.Models
 
         public bool disable { get; set; }
 
+        [Display(Name = "Membership Types")]
         public ICollection<MembershipTypes> membershipTypes { get; set; }
 
         [Required]
@@ -106,7 +121,7 @@ namespace BookRental.Models
         [DateRange("01/01/1900")]
         [Display(Name = "Birth Date")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString ="{0: MM dd yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:MM dd yyyy}")]
         public DateTime bdate { get; set; }
     }
 
