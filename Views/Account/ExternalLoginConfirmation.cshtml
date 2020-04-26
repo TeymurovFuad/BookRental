@@ -14,7 +14,7 @@
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <p class="text-info">
         You've successfully authenticated with <strong>@ViewBag.LoginProvider</strong>.
-        Please enter a user name for this site below and click the Register button to finish
+        Please enter a credentials for this site below and click the Register button to finish
         logging in.
     </p>
     <div class="form-group">
@@ -24,9 +24,34 @@
             @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
         </div>
     </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.phone, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.phone, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.phone, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.bdate, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.bdate, "{0:MM dd yyyy}", new { @class = "form-control", @type = "date" })
+            @Html.ValidationMessageFor(m => m.bdate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.membershipTypeId, "Membership Type", htmlAttributes: new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(m => m.membershipTypeId, new SelectList(Model.membershipTypes, "membershipTypesIdPK", "name"), new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.membershipTypeId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
+            <input type="submit" class="btn btn-primary" value="Register" />
         </div>
     </div>
 }

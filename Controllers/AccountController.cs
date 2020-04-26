@@ -162,11 +162,13 @@ namespace BookRental.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { 
-                    UserName = model.Email, 
+                var user = new ApplicationUser
+                {
+                    UserName = model.Email,
                     Email = model.Email,
                     bdate = model.bdate,
-                    fname = model.fname, lname = model.lname,
+                    fname = model.fname,
+                    lname = model.lname,
                     phone = model.phone,
                     membershipTypeId = model.membershipTypeId,
                     disabled = false
@@ -174,7 +176,8 @@ namespace BookRental.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    using (var db = ApplicationDbContext.Create()) {
+                    using (var db = ApplicationDbContext.Create())
+                    {
                         model.membershipTypes = db.MembershipTypes.ToList();
                         var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
                         var roleManager = new RoleManager<IdentityRole>(roleStore);
@@ -382,7 +385,16 @@ namespace BookRental.Controllers
                     // If the user does not have an account, then prompt the user to create an account
                     ViewBag.ReturnUrl = returnUrl;
                     ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
-                    return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { email = loginInfo.Email });
+
+                    using (var db = ApplicationDbContext.Create())
+                    {
+                        return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel
+                        {
+                            Email = loginInfo.Email,
+                            bdate = DateTime.Now,
+                            membershipTypes = db.MembershipTypes.Where(m => !m.name.ToLower().Equals(SD.adminUserRole.ToLower())).ToList()
+                        });
+                    }
             }
         }
 
@@ -406,7 +418,22 @@ namespace BookRental.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.email, Email = model.email };
+
+                var name = info.ExternalIdentity.Name.Split(' ');
+                var fname = name[0].ToString();
+                var lname = name[1].ToString();
+
+                var user = new ApplicationUser
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    fname = fname,
+                    lname = lname,
+                    bdate = model.bdate,
+                    phone = model.phone,
+                    membershipTypeId = model.membershipTypeId,
+                    disabled = false
+                };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {

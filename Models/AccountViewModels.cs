@@ -9,8 +9,10 @@ namespace BookRental.Models
     {
         [Required]
         [Display(Name = "Email")]
-        public string email { get; set; }
+        public string Email { get; set; }
 
+        [Required]
+        [Display(Name = "Phone Number")]
         public string phone { get; set; }
 
         [Required]
@@ -18,7 +20,8 @@ namespace BookRental.Models
         [DataType(DataType.Date)]
         [DateRange("01/01/1900")]
         public DateTime bdate { get; set; }
-        public bool? disable { get; set; }
+
+        public bool? disabled { get; set; }
 
         public ICollection<MembershipTypes> membershipTypes { get; set; }
 
