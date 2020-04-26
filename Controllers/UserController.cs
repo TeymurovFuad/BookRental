@@ -92,7 +92,7 @@ namespace BookRental.Controllers
                     MembershipTypes = db.MembershipTypes.ToList(),
                     disabled = user.disabled
                 };
-                return View("Edit", model);
+                return View("Edit", "User");
             }
             else
             {

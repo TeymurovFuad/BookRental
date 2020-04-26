@@ -10,6 +10,7 @@ namespace BookRental.Models
     {
         [Required]
         [Key]
+        [Display(Name = "Membership Type")]
         public int membershipTypesIdPK { get; set; }
 
         [Required]

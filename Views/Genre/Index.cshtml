@@ -14,18 +14,27 @@
 
 <table class="table table-hover">
     <thead class="thead-dark">
-        <tr class="row">
-            <th class="col">@Html.DisplayNameFor(m => m.name)</th>
+        <tr>
+            <th scope="col">
+                #
+            </th>
+            <th scope="col">@Html.DisplayNameFor(m => m.name)</th>
+            <th></th>
+            <th></th>
         </tr>
-
     </thead>
     <tbody>
+        @{ int rowNo = 0; }
         @foreach (var item in Model)
         {
-            <tr class="row">
-                <td class="col">@Html.DisplayFor(m => item.name)</td>
-                <td class="col">
-                    @Html.Partial("_TableButtonPartial", new IndividualButtonPartial { genreId = item.genreIdPK})
+            <tr scope="row">
+                <td>
+                    @{rowNo += 1; }
+                    @rowNo
+                </td>
+                <td>@Html.DisplayFor(m => item.name)</td>
+                <td>
+                    @Html.Partial("_TableButtonPartial", new IndividualButtonPartial { genreId = item.genreIdPK })
                 </td>
             </tr>
         }

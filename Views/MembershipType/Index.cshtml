@@ -13,6 +13,9 @@
     <thead class="thead-dark">
         <tr>
             <th scope="col">
+                #
+            </th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.name)
             </th>
             <th scope="col">
@@ -29,9 +32,14 @@
         </tr>
     </thead>
     <tbody>
+        @{ int rowNo = 0; }
         @foreach (var item in Model)
         {
             <tr class="font-weight-bold">
+                <td>
+                    @{rowNo += 1; }
+                    @rowNo
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.name)
                 </td>

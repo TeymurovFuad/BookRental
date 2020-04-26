@@ -1,76 +1,86 @@
 ﻿@model IEnumerable<BookRental.ViewModel.UserViewModel>
 
 @using BookRental.Models
-    @{
-        ViewBag.Title = "Index";
-    }
+@{
+    ViewBag.Title = "Index";
+}
 
-    <h2>Users</h2>
+<h2>Users</h2>
 
-    @Html.Partial("_CreateButtonPartial")
+@Html.Partial("_CreateButtonPartial")
 
-    <br />
-    <br />
-    <br />
+<br />
+<br />
+<br />
 
-    <table class="table table-hover">
-        <thead class="thead-dark">
-            <tr class="row">
-                <th class="col">
-                    @Html.DisplayNameFor(m => m.fname)
-                </th>
-                <th class="col">
+<table class="table table-hover table-responsive-lg w-auto">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">
+                #
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(m => m.fname)
+            </th>
+            <th scope="col">
 
-                    @Html.DisplayNameFor(m => m.lname)
-                </th>
-                <th class="col">
+                @Html.DisplayNameFor(m => m.lname)
+            </th>
+            <th scope="col">
 
-                    @Html.DisplayNameFor(m => m.email)
-                </th>
-                <th class="col">
+                @Html.DisplayNameFor(m => m.email)
+            </th>
+            <th scope="col">
 
-                    @Html.DisplayNameFor(m => m.bdate)
-                </th>
-                <th class="col">
+                @Html.DisplayNameFor(m => m.bdate)
+            </th>
+            <th scope="col">
 
-                    @Html.DisplayNameFor(m => m.phone)
-                </th>
-                <th class="col">
-                    @Html.DisplayNameFor(m => m.disabled)
-                </th>
+                @Html.DisplayNameFor(m => m.phone)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(m => m.disabled)
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ int rowNo = 0; }
+        @foreach (var item in Model)
+        {
+            <tr scope="row">
+                <td>
+                    @{rowNo += 1; }
+                    @rowNo
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.fname)
+                </td>
+                <td>
+
+                    @Html.DisplayFor(m => item.lname)
+                </td>
+                <td>
+
+                    @Html.DisplayFor(m => item.email)
+                </td>
+                <td>
+
+                    @Html.DisplayFor(m => item.bdate)
+                </td>
+                <td>
+
+                    @Html.DisplayFor(m => item.phone)
+                </td>
+                <td>
+                    @Html.CheckBoxFor(m => item.disabled, new { disabled = "disabled" })
+                </td>
+                <td>
+                    @Html.Partial("_TableButtonPartial", new IndividualButtonPartial { userId = item.Id })
+                </td>
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr class="row">
-                    <td class="col">
-                        @Html.DisplayFor(m => item.fname)
-                    </td>
-                    <td class="col">
-
-                        @Html.DisplayFor(m => item.lname)
-                    </td>
-                    <td class="col">
-
-                        @Html.DisplayFor(m => item.email)
-                    </td>
-                    <td class="col">
-
-                        @Html.DisplayFor(m => item.bdate)
-                    </td>
-                    <td class="col">
-
-                        @Html.DisplayFor(m => item.phone)
-                    </td>
-                    <td class="col">
-                        @Html.CheckBoxFor(m => item.disabled, new { @class = "disabled" })
-                    </td>
-                    <td class="col">
-                        @Html.Partial("_TableButtonPartial", new IndividualButtonPartial { userId = item.Id})
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+        }
+    </tbody>
+</table>
 
