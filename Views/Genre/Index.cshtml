@@ -19,19 +19,19 @@
                 #
             </th>
             <th scope="col">@Html.DisplayNameFor(m => m.name)</th>
-            <th></th>
-            <th></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
         </tr>
     </thead>
     <tbody>
         @{ int rowNo = 0; }
         @foreach (var item in Model)
         {
-            <tr scope="row">
-                <td>
+            <tr>
+                <th scope="row">
                     @{rowNo += 1; }
                     @rowNo
-                </td>
+                </th>
                 <td>@Html.DisplayFor(m => item.name)</td>
                 <td>
                     @Html.Partial("_TableButtonPartial", new IndividualButtonPartial { genreId = item.genreIdPK })

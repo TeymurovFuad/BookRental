@@ -49,11 +49,11 @@
         @{ int rowNo = 0; }
         @foreach (var item in Model)
         {
-            <tr scope="row">
-                <td>
+            <tr>
+                <th scope="row">
                     @{rowNo += 1; }
                     @rowNo
-                </td>
+                </th>
                 <td>
                     @Html.DisplayFor(m => item.fname)
                 </td>
