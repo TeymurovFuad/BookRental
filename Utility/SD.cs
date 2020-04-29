@@ -8,6 +8,6 @@ namespace BookRental.Utility
     public static class SD
     {
         public const string endUserRole = "Customer";
-        public const string adminUserRole = "SuperAdmin";
+        public const string adminUserRole = "Super Admin";
     }
 }

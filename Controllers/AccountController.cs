@@ -145,7 +145,9 @@ namespace BookRental.Controllers
             {
                 RegisterViewModel newUser = new RegisterViewModel
                 {
+                    //Hide Super Admin Option 
                     //membershipTypes = db.MembershipTypes.Where(m=>m.name.ToLower().Equals(SD.adminUserRole.ToLower())).ToList(),
+                    //membershipTypes = db.MembershipTypes.Where(m=>!Concat(m.name.ToLower().Split(' ')[0], m.name.ToLower().Split(' ')[1]).Equals(SD.adminUserRole.ToLower())).ToList(),
                     membershipTypes = db.MembershipTypes.ToList(),
                     bdate = DateTime.Now
                 };
