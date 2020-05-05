@@ -40,7 +40,7 @@ namespace BookRental.Views.Home
         [Required]
         [Range(0,1000)]
         [Display(Name = "In Stock")]
-        public string availability { get; set; }
+        public int availability { get; set; }
 
 
         [Required]

@@ -24,7 +24,6 @@ namespace BookRental.Models
 
         [Required]
         [Display(Name = "Charge Rate For A Month")]
-
         public byte chargeRateOneMonth { get; set; }
 
         [Required]

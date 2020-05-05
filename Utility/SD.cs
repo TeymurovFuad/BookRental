@@ -9,5 +9,11 @@ namespace BookRental.Utility
     {
         public const string endUserRole = "Customer";
         public const string adminUserRole = "Super Admin";
+
+        public const string oneMonth = "One Month";
+        public const string sixMonth = "Six Month";
+
+        public const string oneMonthCount = "1";
+        public const string sixMonthCount = "6";
     }
 }

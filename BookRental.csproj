@@ -197,6 +197,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BookController.cs" />
+    <Compile Include="Controllers\BookDetailController.cs" />
     <Compile Include="Controllers\GenreController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -247,8 +248,21 @@
     <Compile Include="Migrations\202004222239250_test.designer.cs">
       <DependentUpon>202004222239250_test.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004292125593_Added BookRent Model.cs" />
+    <Compile Include="Migrations\202004292125593_Added BookRent Model.designer.cs">
+      <DependentUpon>202004292125593_Added BookRent Model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004292207478_Added rental duration column to BookRent table.cs" />
+    <Compile Include="Migrations\202004292207478_Added rental duration column to BookRent table.designer.cs">
+      <DependentUpon>202004292207478_Added rental duration column to BookRent table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005052251284_BookRentalViewModel and changed data types for some columns.cs" />
+    <Compile Include="Migrations\202005052251284_BookRentalViewModel and changed data types for some columns.designer.cs">
+      <DependentUpon>202005052251284_BookRentalViewModel and changed data types for some columns.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\BookRent.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IndividualButtonPartial.cs" />
@@ -259,6 +273,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Utility\SD.cs" />
+    <Compile Include="ViewModel\BookRentalViewModel.cs" />
     <Compile Include="ViewModel\BookViewMdoel.cs" />
     <Compile Include="ViewModel\ThumbnailBoxViewModel.cs" />
     <Compile Include="ViewModel\UserViewModel.cs" />
@@ -502,6 +517,7 @@
     <Content Include="Views\User\Delete.cshtml" />
     <Content Include="Views\User\Details.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\BookDetail\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -541,6 +557,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004222239250_test.resx">
       <DependentUpon>202004222239250_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004292125593_Added BookRent Model.resx">
+      <DependentUpon>202004292125593_Added BookRent Model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004292207478_Added rental duration column to BookRent table.resx">
+      <DependentUpon>202004292207478_Added rental duration column to BookRent table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005052251284_BookRentalViewModel and changed data types for some columns.resx">
+      <DependentUpon>202005052251284_BookRentalViewModel and changed data types for some columns.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
