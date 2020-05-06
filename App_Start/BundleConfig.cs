@@ -27,6 +27,7 @@ namespace BookRental
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
+                      "~/Content/BookDetail.css",
                       "~/Content/thumbnail.css",
                       "~/lib/font-awesome/css/all.min.css"));
         }
