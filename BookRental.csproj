@@ -266,6 +266,10 @@
     <Compile Include="Migrations\202005052251284_BookRentalViewModel and changed data types for some columns.designer.cs">
       <DependentUpon>202005052251284_BookRentalViewModel and changed data types for some columns.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005072151366_Changed data type of price column from bool to double.cs" />
+    <Compile Include="Migrations\202005072151366_Changed data type of price column from bool to double.designer.cs">
+      <DependentUpon>202005072151366_Changed data type of price column from bool to double.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BookRent.cs" />
@@ -297,6 +301,7 @@
     <Content Include="Content\Images\images.jpg" />
     <Content Include="Content\Images\images.png" />
     <Content Include="Content\thumbnail.css" />
+    <Content Include="Content\typeahead.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -335,6 +340,8 @@
     <Content Include="lib\font-awesome\webfonts\fa-regular-400.svg" />
     <Content Include="lib\font-awesome\webfonts\fa-solid-900.svg" />
     <Content Include="Scripts\adminmenu.js" />
+    <Content Include="Scripts\bloodhound.js" />
+    <Content Include="Scripts\bloodhound.min.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -449,6 +456,10 @@
     <Content Include="Scripts\src\utils\setAttributes.js" />
     <Content Include="Scripts\src\utils\setStyles.js" />
     <Content Include="Scripts\src\utils\setupEventListeners.js" />
+    <Content Include="Scripts\typeahead.bundle.js" />
+    <Content Include="Scripts\typeahead.bundle.min.js" />
+    <Content Include="Scripts\typeahead.jquery.js" />
+    <Content Include="Scripts\typeahead.jquery.min.js" />
     <Content Include="Scripts\umd\popper-utils.js" />
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
@@ -575,6 +586,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005052251284_BookRentalViewModel and changed data types for some columns.resx">
       <DependentUpon>202005052251284_BookRentalViewModel and changed data types for some columns.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005072151366_Changed data type of price column from bool to double.resx">
+      <DependentUpon>202005072151366_Changed data type of price column from bool to double.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

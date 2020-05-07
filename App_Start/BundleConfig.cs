@@ -28,6 +28,7 @@ namespace BookRental
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/BookDetail.css",
+                      "~/Content/typeahead.css",
                       "~/Content/thumbnail.css",
                       "~/lib/font-awesome/css/all.min.css"));
         }
