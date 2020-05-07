@@ -130,10 +130,14 @@ namespace BookRental.ViewModel
         //User ID
         public int userRentId { get; set; }
 
+        public string email { get; set; }
+
         [Display(Name = "First Name")]
         public string fname { get; set; }
+
         [Display(Name = "Last Name")]
         public string lname { get; set; }
+
         public string completeName { get { return fname + " " + lname; } }
 
         [DataType(DataType.Date)]

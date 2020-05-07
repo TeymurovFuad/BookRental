@@ -1,0 +1,110 @@
+﻿@model BookRental.ViewModel.BookRentalViewModel
+@using BookRental.Utility
+@{
+    ViewBag.Title = "Create";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken();
+
+    <div class="form-horizontal">
+        <h3>Add New Book Rental</h3>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @*Email*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.email, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*Tittle*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.tittle, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.tittle, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.tittle, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*ISBN*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.ISBN, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.ISBN, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ISBN, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        @{
+            List<SelectListItem> listItems = new List<SelectListItem>();
+            listItems.Add(new SelectListItem
+            {
+                Text = SD.oneMonth,
+                Value = SD.oneMonthCount
+            });
+            listItems.Add(new SelectListItem
+            {
+                Text = SD.sixMonth,
+                Value = SD.sixMonthCount
+            });
+        }
+
+        @*Rental Duration*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.rentalDuration, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.rentalDuration, listItems, new { id = "RentalDuration", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.rentalDuration, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div id="nameAndDob" class="d-none">
+            @*Full Name*@
+            <div class="form-group">
+                @Html.LabelFor(model => model.completeName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.Label("", new { id = "completeName", @class = "form-control w-3" })
+                </div>
+            </div>
+
+            @*Birth Date*@
+            <div class="form-group">
+                @Html.LabelFor(model => model.bdate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.Label("", new { id = "bdate", @class = "form-control w-3" })
+                </div>
+            </div>
+
+            @*Rental Price*@
+            <div class="form-group">
+                @Html.LabelFor(model => model.rentalPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.Label("", new { id = "rentalPrice", @class = "form-control w-3" })
+                </div>
+            </div>
+
+            @*Availability*@
+            <div class="form-group">
+                @Html.LabelFor(model => model.availability, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.Label("", new { id = "availability", @class = "form-control w-3" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="offset-md-2 col-md-10">
+                <input type="button" id="btnAvailability" value="Check Availability" class="btn btn-sm btn-primary" />
+                <input type="button" id="btnSubmit" value="Reserve" class="btn btn-sm btn-primary d-none" />
+            </div>
+        </div>
+    </div>
+
+}
+

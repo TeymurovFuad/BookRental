@@ -66,7 +66,7 @@ namespace BookRental.Controllers
             {
                 author = bookVM.Book.author,
                 availability = bookVM.Book.availability,
-                ISBN = bookVM.Book.ISBN,
+                ISBN = Convert.ToString(DateTimeOffset.Now.ToUnixTimeSeconds()),
                 Price = bookVM.Book.Price,
                 publicationDate = bookVM.Book.publicationDate,
                 dateAdded = bookVM.Book.dateAdded,
@@ -123,7 +123,7 @@ namespace BookRental.Controllers
             {
                 author = bookVM.Book.author,
                 availability = bookVM.Book.availability,
-                ISBN = bookVM.Book.ISBN,
+                ISBN = Convert.ToString(DateTimeOffset.Now.ToUnixTimeSeconds()),
                 Price = bookVM.Book.Price,
                 publicationDate = bookVM.Book.publicationDate,
                 dateAdded = bookVM.Book.dateAdded,

@@ -15,7 +15,7 @@ namespace BookRental.Models
 
         //User ID
         [Required]
-        public int userRentId { get; set; }
+        public string userRentId { get; set; }
 
         //Book ID
         [Required]
@@ -40,7 +40,7 @@ namespace BookRental.Models
         //Rental Price
         [Display(Name = "Rental Price")]
         [Required]
-        public bool rentalPrice { get; set; }
+        public double rentalPrice { get; set; }
 
         //Actual status of rental
         [Display(Name = "Rental Duration")]
