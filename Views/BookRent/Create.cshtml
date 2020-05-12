@@ -6,7 +6,7 @@
 
 @using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken();
+    @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
         <h3>Add New Book Rental</h3>
@@ -17,7 +17,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.email, new { @class = "form-control" })
+                @Html.TextBoxFor(model => model.email, new { id = "email", @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -26,7 +26,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.tittle, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.tittle, new { @class = "form-control" })
+                @Html.TextBoxFor(model => model.tittle, new { id = "tittle", @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.tittle, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -35,7 +35,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ISBN, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.ISBN, new { @class = "form-control" })
+                @Html.TextBoxFor(model => model.ISBN, new { id = "isbn", @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ISBN, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -105,6 +105,114 @@
             </div>
         </div>
     </div>
-
 }
 
+@section scripts{
+
+    <script>
+        //Email
+        $(document).ready(function () {
+            // constructs the suggestion engine
+            var states = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('email'),
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                remote: {
+                    url: 'API/UsersAPI?type=email&query=%QUERY',
+                    wildcard: '%QUERY'
+                }
+            });
+
+            $('#email').typeahead({
+                highlight: true,
+                minLength: 3
+            },
+                {
+                    name: 'customers',
+                    display: 'Email',
+                    source: customers
+                });
+
+            //Tittle
+            var tittle = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('tittle'),
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                remote: {
+                    url: 'API/UsersAPI?query=%QUERY',
+                    wildcard: '%QUERY'
+                }
+            });
+
+            $('#tittle').typeahead({
+                highlight: true,
+                minLength: 3
+            },
+                {
+                    name: 'tittle',
+                    display: 'Tittle',
+                    source: tittle
+                });
+        });
+
+        $('#btnAvailability').click(function () {
+            var ISBN = document.getElementById("btnAvailability").value;
+            var email = document.getElementById("email").value;
+            var rentalDuration = document.getElementById("RentalDuration").value;
+
+            $.ajax({
+                url: '/api/BookApi?type=avail&isbn=' + ISBN,
+                type: 'GET',
+                dataType: 'Json',
+                success: function (data, textStatus, xhr) {
+                    $('#availability').text(data + ' available')
+                    if (data > 0) {
+                        document.getElementById('btnSubmit').style.display = '';
+                    }
+                    else {
+                        document.getElementById('btnSubmit').style.display = '';
+                        document.getElementById('btnSubmit').value = 'Not Available';
+                        document.getElementById('btnSubmit').disabled = true;
+                        document.getElementById('btnSubmit').classList.remove = 'btn-success';
+                        document.getElementById('btnSubmit').classList.add = 'btn-danger';
+                    }
+                },
+                error: function (xhr, textStatus, errorThrown) {
+
+                }
+            });
+
+            $.ajax({
+                url: '/api/BookApi?type=price&isbn=' + ISBN + '&rentalDuration=' + rentalDuration + '&email=' + email,
+                type: 'GET',
+                dataType: 'Json',
+                success: function (data, textStatus, xhr) {
+                    $('#rentalPrice').text(data);
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                }
+            });
+
+
+            $.ajax({
+                url: '/api/UsersApi?type=name&isbn=&query=' + email,
+                type: 'GET',
+                dataType: 'Json',
+                success: function (data, textStatus, xhr) {
+                    var fields = data.split(';');
+                    $('#fname').text(fields[0])
+
+                    var bdate = fields[1].split(' ')
+                    $('#bdate').text(bdate[0])
+                    document.getElementById("btnAvailability").style.display = 'none';
+                    document.getElementById("nameAndDob").style.display = '';
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                }
+            });
+
+
+
+        });
+
+
+    </script>
+}
