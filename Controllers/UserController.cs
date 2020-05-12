@@ -35,7 +35,7 @@ namespace BookRental.Controllers
                            phone = u.phone,
                            bdate = u.bdate,
                            userMemTypeId = u.membershipTypeId,
-                           //MembershipTypes = (ICollection<MembershipTypes>)db.MembershipTypes.ToList().Where(n => n.membershipTypesIdPK.Equals(u.membershipTypeId)),
+                           MembershipTypes = (ICollection<MembershipTypes>)db.MembershipTypes.ToList().Where(n => n.membershipTypesIdPK.Equals(u.membershipTypeId)),
                            disabled = u.disabled
 
                        }).ToList();
