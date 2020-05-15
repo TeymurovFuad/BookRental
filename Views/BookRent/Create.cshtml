@@ -64,10 +64,10 @@
             </div>
         </div>
 
-        <div id="nameAndDob" class="d-none">
+        <div id="nameAndDob">
             @*Full Name*@
             <div class="form-group">
-                @Html.LabelFor(model => model.completeName, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.completeName, "Full Name",htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.Label("", new { id = "completeName", @class = "form-control w-3" })
                 </div>
@@ -75,7 +75,7 @@
 
             @*Birth Date*@
             <div class="form-group">
-                @Html.LabelFor(model => model.bdate, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.bdate, "Birth Date",htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.Label("", new { id = "bdate", @class = "form-control w-3" })
                 </div>
@@ -83,7 +83,7 @@
 
             @*Rental Price*@
             <div class="form-group">
-                @Html.LabelFor(model => model.rentalPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.rentalPrice, "Rental Price",htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.Label("", new { id = "rentalPrice", @class = "form-control w-3" })
                 </div>
@@ -91,7 +91,7 @@
 
             @*Availability*@
             <div class="form-group">
-                @Html.LabelFor(model => model.availability, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.availability, "Availability",htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.Label("", new { id = "availability", @class = "form-control w-3" })
                 </div>
@@ -113,11 +113,11 @@
         //Email
         $(document).ready(function () {
             // constructs the suggestion engine
-            var states = new Bloodhound({
+            var customers = new Bloodhound({
                 datumTokenizer: Bloodhound.tokenizers.obj.whitespace('email'),
                 queryTokenizer: Bloodhound.tokenizers.whitespace,
                 remote: {
-                    url: 'API/UsersAPI?type=email&query=%QUERY',
+                    url: '/API/UsersAPI?type=email&query=%QUERY',
                     wildcard: '%QUERY'
                 }
             });
@@ -137,7 +137,7 @@
                 datumTokenizer: Bloodhound.tokenizers.obj.whitespace('tittle'),
                 queryTokenizer: Bloodhound.tokenizers.whitespace,
                 remote: {
-                    url: 'API/UsersAPI?query=%QUERY',
+                    url: '/API/UsersAPI?query=%QUERY',
                     wildcard: '%QUERY'
                 }
             });
@@ -154,12 +154,12 @@
         });
 
         $('#btnAvailability').click(function () {
-            var ISBN = document.getElementById("btnAvailability").value;
+            var ISBN = document.getElementById("isbn").value;
             var email = document.getElementById("email").value;
             var rentalDuration = document.getElementById("RentalDuration").value;
 
             $.ajax({
-                url: '/api/BookApi?type=avail&isbn=' + ISBN,
+                url: '/api/BookApi?type=avail&ISBN=' + ISBN,
                 type: 'GET',
                 dataType: 'Json',
                 success: function (data, textStatus, xhr) {
@@ -181,7 +181,7 @@
             });
 
             $.ajax({
-                url: '/api/BookApi?type=price&isbn=' + ISBN + '&rentalDuration=' + rentalDuration + '&email=' + email,
+                url: '/api/BookApi?type=price&ISBN=' + ISBN + '&rentalDuration=' + rentalDuration + '&email=' + email,
                 type: 'GET',
                 dataType: 'Json',
                 success: function (data, textStatus, xhr) {
@@ -212,7 +212,5 @@
 
 
         });
-
-
     </script>
 }
