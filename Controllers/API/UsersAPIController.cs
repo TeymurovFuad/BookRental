@@ -14,8 +14,8 @@ namespace BookRental.Controllers.API
 
         //To retrieve Email or (Name & Birthdate)
         public IHttpActionResult Get(string type, string query = null)
-      {
-            if(type.Equals("email") && query != null)
+        {
+            if (type.Equals("email") && query != null)
             {
                 var customerQuery = db.Users.Where(u => u.Email.ToLower().Contains(query.ToLower()));
 

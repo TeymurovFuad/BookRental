@@ -26,7 +26,7 @@
         <div class="form-group row">
             @Html.LabelFor(model => model.tittle, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.tittle, new { id = "tittle", @class = "form-control", placeholder = "Star Wars"  })
+                @Html.TextBoxFor(model => model.tittle, new { id = "tittle", @class = "form-control", placeholder = "Star Wars" })
                 @Html.ValidationMessageFor(model => model.tittle, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -101,7 +101,7 @@
         <div class="form-group row">
             <div class="offset-md-2 col-md-10">
                 <input type="button" id="btnAvailability" value="Check Availability" class="btn btn-sm btn-primary" />
-                <input type="button" id="btnSubmit" value="Reserve" class="btn btn-sm btn-primary d-none"/>
+                <input type="button" id="btnSubmit" value="Reserve" class="btn btn-sm btn-primary d-none" />
             </div>
         </div>
     </div>

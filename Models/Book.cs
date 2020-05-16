@@ -9,7 +9,7 @@ namespace BookRental.Views.Home
     {
         [Required]
         [Key]
-        public int bookIdPK{ get; set; }
+        public int bookIdPK { get; set; }
 
 
         [Required]
@@ -38,7 +38,7 @@ namespace BookRental.Views.Home
 
 
         [Required]
-        [Range(0,1000)]
+        [Range(0, 1000)]
         [Display(Name = "In Stock")]
         public int availability { get; set; }
 
@@ -51,7 +51,7 @@ namespace BookRental.Views.Home
 
         [Required]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString ="{0: MMM/dd/yyyy}")]
+        [DisplayFormat(DataFormatString = "{0: MMM/dd/yyyy}")]
         [Display(Name = "Added")]
         public DateTime? dateAdded { get; set; }
 
