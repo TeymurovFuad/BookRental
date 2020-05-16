@@ -16,7 +16,7 @@ namespace BookRental.Controllers.API
 
         //Tittle
         public IHttpActionResult Get(string query = null)
-        {
+       {
             var bookQuery = db.Books.Where(b => b.tittle.ToLower().Contains(query.ToLower()));
             return Ok(bookQuery.ToList());
         }

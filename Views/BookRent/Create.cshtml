@@ -14,25 +14,25 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         @*Email*@
-        <div class="form-group">
+        <div class="form-group row">
             @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.email, new { id = "email", @class = "form-control" })
+                @Html.TextBoxFor(model => model.email, new { id = "email", @class = "form-control", placeholder = "example@gmail.com" })
                 @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
             </div>
         </div>
 
         @*Tittle*@
-        <div class="form-group">
+        <div class="form-group row">
             @Html.LabelFor(model => model.tittle, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.tittle, new { id = "tittle", @class = "form-control" })
+                @Html.TextBoxFor(model => model.tittle, new { id = "tittle", @class = "form-control", placeholder = "Star Wars"  })
                 @Html.ValidationMessageFor(model => model.tittle, "", new { @class = "text-danger" })
             </div>
         </div>
 
         @*ISBN*@
-        <div class="form-group">
+        <div class="form-group row">
             @Html.LabelFor(model => model.ISBN, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.TextBoxFor(model => model.ISBN, new { id = "isbn", @class = "form-control" })
@@ -56,7 +56,7 @@
         }
 
         @*Rental Duration*@
-        <div class="form-group">
+        <div class="form-group row">
             @Html.LabelFor(model => model.rentalDuration, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.rentalDuration, listItems, new { id = "RentalDuration", @class = "form-control" })
@@ -64,44 +64,44 @@
             </div>
         </div>
 
-        <div id="nameAndDob">
+        <div id="nameAndDob" style="display:none">
             @*Full Name*@
-            <div class="form-group">
-                @Html.LabelFor(model => model.completeName, "Full Name",htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="form-group row">
+                @Html.LabelFor(model => model.completeName, "Full Name", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.Label("", new { id = "completeName", @class = "form-control w-3" })
+                    @Html.Label(" ", new { id = "completeName", @class = "form-control w-3" })
                 </div>
             </div>
 
             @*Birth Date*@
-            <div class="form-group">
-                @Html.LabelFor(model => model.bdate, "Birth Date",htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="form-group row">
+                @Html.LabelFor(model => model.bdate, "Birth Date", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.Label("", new { id = "bdate", @class = "form-control w-3" })
+                    @Html.Label(" ", new { id = "bdate", @class = "form-control w-3" })
                 </div>
             </div>
 
             @*Rental Price*@
-            <div class="form-group">
-                @Html.LabelFor(model => model.rentalPrice, "Rental Price",htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="form-group row">
+                @Html.LabelFor(model => model.rentalPrice, "Rental Price", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.Label("", new { id = "rentalPrice", @class = "form-control w-3" })
+                    @Html.Label(" ", new { id = "rentalPrice", @class = "form-control w-3" })
                 </div>
             </div>
 
             @*Availability*@
-            <div class="form-group">
-                @Html.LabelFor(model => model.availability, "Availability",htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="form-group row">
+                @Html.LabelFor(model => model.availability, "Availability", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.Label("", new { id = "availability", @class = "form-control w-3" })
+                    @Html.Label(" ", new { id = "availability", @class = "form-control w-3" })
                 </div>
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group row">
             <div class="offset-md-2 col-md-10">
                 <input type="button" id="btnAvailability" value="Check Availability" class="btn btn-sm btn-primary" />
-                <input type="button" id="btnSubmit" value="Reserve" class="btn btn-sm btn-primary d-none" />
+                <input type="button" id="btnSubmit" value="Reserve" class="btn btn-sm btn-primary d-none"/>
             </div>
         </div>
     </div>
@@ -133,11 +133,11 @@
                 });
 
             //Tittle
-            var tittle = new Bloodhound({
+            var bookTittle = new Bloodhound({
                 datumTokenizer: Bloodhound.tokenizers.obj.whitespace('tittle'),
                 queryTokenizer: Bloodhound.tokenizers.whitespace,
                 remote: {
-                    url: '/API/UsersAPI?query=%QUERY',
+                    url: '/API/BookAPI?query=%QUERY',
                     wildcard: '%QUERY'
                 }
             });
@@ -148,8 +148,8 @@
             },
                 {
                     name: 'tittle',
-                    display: 'Tittle',
-                    source: tittle
+                    display: 'tittle',
+                    source: bookTittle
                 });
         });
 
@@ -168,7 +168,7 @@
                         document.getElementById('btnSubmit').style.display = '';
                     }
                     else {
-                        document.getElementById('btnSubmit').style.display = '';
+                        document.getElementById('btnSubmit').className.replace('d-none', '');
                         document.getElementById('btnSubmit').value = 'Not Available';
                         document.getElementById('btnSubmit').disabled = true;
                         document.getElementById('btnSubmit').classList.remove = 'btn-success';
@@ -198,9 +198,9 @@
                 dataType: 'Json',
                 success: function (data, textStatus, xhr) {
                     var fields = data.split(';');
-                    $('#fname').text(fields[0])
+                    $('#completeName').text(fields[0])
 
-                    var bdate = fields[1].split(' ')
+                    var bdate = fields[1].split(' ');
                     $('#bdate').text(bdate[0])
                     document.getElementById("btnAvailability").style.display = 'none';
                     document.getElementById("nameAndDob").style.display = '';

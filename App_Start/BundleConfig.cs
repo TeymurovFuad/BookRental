@@ -23,7 +23,7 @@ namespace BookRental
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/adminmenu.js",
                       "~/Scripts/typeaheadAjax.js",
-                      "~/Scripts/typeahead.bundle.js",
+                      //"~/Scripts/typeahead.bundle.js",
                       "~/Scripts/typeahead.bundle.min.js",
                       "~/lib/font-awesome/js/all.min.js"));
 
