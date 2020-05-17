@@ -21,6 +21,7 @@
             </div>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">@Html.ActionLink("Rental Status", "Index", "BookRent", null, new { @class="nav-link"})</li>
                     @Html.Partial("_AdminMenuPartial")
                 </ul>
                 @Html.Partial("_LoginPartial")

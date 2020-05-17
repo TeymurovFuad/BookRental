@@ -57,7 +57,7 @@ namespace BookRental.Controllers
                 publicationDate = bookModel.publicationDate,
                 productDimensions = bookModel.productDimensions,
                 tittle = bookModel.tittle,
-                userRentId = id,
+                userRentId = userId,
                 rentalPrice = rentalPrice,
                 rentalPriceOneMonth = oneMonthRental,
                 rentalPriceSixMonth = sixMonthRental,

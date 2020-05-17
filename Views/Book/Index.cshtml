@@ -35,13 +35,13 @@
         </tr>
     </thead>
     <tbody>
-        @{ int rowNo = 0; }
+        @{ int rowCount = 0; }
         @foreach (var item in Model)
         {
             <tr>
                 <th scope="row">
-                    @{rowNo += 1; }
-                    @rowNo
+                    @{rowCount += 1; }
+                    @rowCount
                 </th>
                 <td>
                     @Html.DisplayFor(modelItem => item.ISBN)

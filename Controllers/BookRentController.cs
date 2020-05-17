@@ -2,6 +2,7 @@
 using BookRental.Utility;
 using BookRental.ViewModel;
 using BookRental.Views.Home;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -64,7 +65,7 @@ namespace BookRental.Controllers
 
                 double rentalPrice = 0;
 
-                if(bookRent.rentalDuration == SD.sixMonthCount)
+                if (bookRent.rentalDuration == SD.sixMonthCount)
                 {
                     rentalPrice = sixMonthRental;
                 }
@@ -95,7 +96,45 @@ namespace BookRental.Controllers
         // GET: BookRent
         public ActionResult Index()
         {
-            return View();
+            string userId = User.Identity.GetUserId();
+
+            var model = from br in db.BookRents
+                        join b in db.Books on br.bookRentId equals b.bookIdPK
+                        join u in db.Users on br.userRentId equals u.Id
+                        select new BookRentalViewModel
+                        {
+                            bookId = b.bookIdPK,
+                            rentalPrice = br.rentalPrice,
+                            Price = b.Price,
+                            pages = b.pages,
+                            fname = u.fname,
+                            lname = u.lname,
+                            bdate = u.bdate,
+                            scheduledEndDate = br.scheduledEndDate,
+                            author = b.author,
+                            availability = b.availability,
+                            dateAdded = b.dateAdded,
+                            description = b.description,
+                            email = u.Email,
+                            genreId = b.genreId,
+                            Genre = db.Genres.Where(g => g.genreIdPK.Equals(b.genreId)).FirstOrDefault(),
+                            ISBN = b.imgUrl,
+                            productDimensions = b.productDimensions,
+                            publisher = b.publisher,
+                            rentalDuration = br.rentalDuration,
+                            Status = br.Status.ToString(),
+                            tittle = b.tittle,
+                            userRentId = u.Id,
+                            bookRentalIdPK = br.bookRentIdPK,
+                            startDate = br.startDate
+                        };
+
+            if (!User.IsInRole(SD.adminUserRole))
+            {
+                model = model.Where(u => u.userRentId.Equals(userId));
+            }
+
+            return View(model.ToList());
         }
 
 

@@ -1,0 +1,148 @@
+﻿@model IEnumerable<BookRental.ViewModel.BookRentalViewModel>
+@using BookRental.Utility
+@using BookRental.Models
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <div class="col-sm-4">
+        <h3>Book Rental Portal</h3>
+        @if (User.IsInRole(SD.adminUserRole))
+        {
+            <p>@Html.Partial("_CreateButtonPartial")</p>
+        }
+    </div>
+
+    <div class="col-sm-8">
+        <div class="row">
+            <div class="col-sm-12 text-right">
+                @if (User.IsInRole(SD.adminUserRole))
+                {
+                    <label class="radio-inline">
+                        @Html.RadioButton("option", "name") Name
+                    </label>
+                    <label class="radio-inline">
+                        @Html.RadioButton("option", "email") Email
+                    </label>
+                }
+                <label class="radio-inline">
+                    @Html.RadioButton("option", "status") Status
+                </label>
+            </div>
+        </div>
+        <div class="row float-right">
+            <div class="input-group mb-3">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">
+                        <span class="fa fa-search"></span>
+                    </button>
+                </div>
+                @Html.Editor("Search", new { HtmlAttributes = new { @class = "form-control input-sm", placeholder = "Search" } })
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<table class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <td scope="col">#</td>
+            <th scope="row">
+                @Html.DisplayNameFor(m => m.fname)
+            </th>
+            <th scope="row">
+                @Html.DisplayNameFor(m => m.lname)
+            </th>
+            <th scope="row">
+                @Html.DisplayNameFor(m => m.email)
+            </th>
+            <th scope="row">
+                @Html.DisplayNameFor(m => m.tittle)
+            </th>
+            <th scope="row">
+                @Html.DisplayNameFor(m => m.startDate)
+            </th>
+            <th scope="row">
+                @Html.DisplayNameFor(m => m.scheduledEndDate)
+            </th>
+            <th scope="row">
+                @Html.DisplayNameFor(m => m.rentalPrice)
+            </th>
+            <th scope="row">
+                @Html.DisplayNameFor(m => m.rentalDuration)
+            </th>
+            <th scope="row">
+                @Html.DisplayNameFor(m => m.Status)
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ int rowCount = 0;}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th scope="row">
+                    @{rowCount += 1;}
+                    @rowCount
+                </th>
+                <td>
+                    @Html.HiddenFor(m => item.userRentId)
+                </td>
+                <td>
+                    @Html.HiddenFor(m => item.bookId)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.fname)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.lname)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.email)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.tittle)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.startDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.scheduledEndDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.rentalPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.rentalDuration)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Status)
+                </td>
+                <td>
+                    @*Details*@
+                    @Html.Partial("_IndividualButtonPartial", new IndividualButtonPartial
+               {
+                   action = "Details",
+                   buttonType = "success",
+                   icon = "list",
+                   text = "Details Button",
+                   bookId = null,
+                   customerId = null,
+                   genreId = null,
+                   membershipTypeId = null,
+                   userId = null,
+                   bookRentalId = item.bookRentalIdPK
+               });
+                </td>
+                <td>
+                    @*Action*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

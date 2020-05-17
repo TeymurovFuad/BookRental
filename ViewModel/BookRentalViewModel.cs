@@ -128,19 +128,24 @@ namespace BookRental.ViewModel
         //USER DETAILS
 
         //User ID
-        public int userRentId { get; set; }
+        public string userRentId { get; set; }
 
+        //User Email
         [Display(Name = "Email")]
         public string email { get; set; }
 
+        //First Name
         [Display(Name = "First Name")]
         public string fname { get; set; }
 
+        //User Last Name
         [Display(Name = "Last Name")]
         public string lname { get; set; }
 
+        //User Full Name
         public string completeName { get { return fname + " " + lname; } }
 
+        //User Birth Date
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0: MMM dd yyyy}")]
         [Display(Name = "Birdth Date")]
