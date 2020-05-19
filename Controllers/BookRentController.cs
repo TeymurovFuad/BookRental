@@ -137,6 +137,50 @@ namespace BookRental.Controllers
             return View(model.ToList());
         }
 
+        [HttpPost]
+        public ActionResult Reserve(BookRentalViewModel book)
+        {
+            var userId = User.Identity.GetUserId();
+            Book bookToRent = db.Books.Find(book.bookId);
+            double rentalPrice = 0;
+            if (userId != null)
+            {
+                var chargeRate = from u in db.Users
+                                 join m in db.MembershipTypes on u.membershipTypeId equals m.membershipTypesIdPK
+                                 where u.Id.Equals(userId)
+                                 select new
+                                 {
+                                     m.chargeRateOneMonth,
+                                     m.chargeRateSixMonth
+                                 };
+
+                if (book.rentalDuration == SD.sixMonthCount)
+                {
+                    rentalPrice = Convert.ToDouble(bookToRent.Price) * Convert.ToDouble(chargeRate.ToList()[0].chargeRateSixMonth) / 100;
+                }
+                else
+                {
+                    rentalPrice = Convert.ToDouble(bookToRent.Price) * Convert.ToDouble(chargeRate.ToList()[0].chargeRateOneMonth) / 100;
+                }
+                BookRent bookRent = new BookRent
+                {
+                    bookRentId = bookToRent.bookIdPK,
+                    userRentId = userId,
+                    rentalDuration = book.rentalDuration,
+                    rentalPrice = rentalPrice,
+                    Status = BookRent.statusEnum.Requested
+                };
+
+                db.BookRents.Add(bookRent);
+
+                var bookIdDb = db.Books.SingleOrDefault(c => c.bookIdPK == book.bookId);
+                bookIdDb.availability -= 1;
+                db.SaveChanges();
+                return RedirectToAction("Index", "BookRent");
+            }
+
+            return View();
+        }
 
         protected override void Dispose(bool disposing)
         {

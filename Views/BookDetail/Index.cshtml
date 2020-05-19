@@ -56,7 +56,7 @@
                         <div class="input-group" style="height:90px;">
                             <label>Rental Price: </label><br />
                             <label id="lblOneMonth" class="font-weight-normal">One Motnh: $@(Model.rentalPriceOneMonth)</label><br />
-                            <label id="lblOneMonth" class="font-weight-normal">Six Motnh: $@(Model.rentalPriceSixMonth)</label><br />
+                            <label id="lblSixMonth" class="font-weight-normal">Six Motnh: $@(Model.rentalPriceSixMonth)</label><br />
                         </div>
                         <br />
                         <label>Select Your Rental Duration : </label><br />
@@ -162,6 +162,7 @@
                     &nbsp;&nbsp;&nbsp;&nbsp; <span class="border-bottom border-primary">@Html.DisplayFor(m => m.productDimensions)</span>
                 </dd>
             </dl>
+            @Html.HiddenFor(m => m.bookId)
         </div>
     </div>
 }
