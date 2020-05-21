@@ -53,7 +53,7 @@
                             <label id="lblMSRP" class="font-weight-normal">$@(Model.Price)</label><br />
                         </div>
                         <hr />
-                        <div class="input-group" style="height:90px;">
+                        <div class="" style="height:90px;">
                             <label>Rental Price: </label><br />
                             <label id="lblOneMonth" class="font-weight-normal">One Motnh: $@(Model.rentalPriceOneMonth)</label><br />
                             <label id="lblSixMonth" class="font-weight-normal">Six Motnh: $@(Model.rentalPriceSixMonth)</label><br />
@@ -72,7 +72,7 @@
                         }
                         else
                         {
-                            <button type="submit" class="btn btn-danger btn-sm">
+                            <button type="submit" class="btn btn-danger btn-sm disabled">
                                 <span class="fa fa-thumbs-down"></span>
                                 Unavailable
                             </button>
@@ -99,7 +99,7 @@
                             if (User.IsInRole(SD.adminUserRole) && Model.availability == 0)
                             {
                                 //Admin user with book not available
-                                <button type="submit" disabled class="btn btn-danger">
+                                <button type="submit" disabled class="btn btn-danger disabled">
                                     <span class="fa fa-thumbs-down"></span>
                                     Unavailable
                                 </button>
