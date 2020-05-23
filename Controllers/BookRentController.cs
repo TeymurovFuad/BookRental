@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using System.Net;
 
 namespace BookRental.Controllers
 {
@@ -80,7 +82,7 @@ namespace BookRental.Controllers
                     rentalPrice = rentalPrice,
                     scheduledEndDate = bookRent.scheduledEndDate,
                     rentalDuration = bookRent.rentalDuration,
-                    Status = BookRent.statusEnum.Requested,
+                    Status = BookRent.statusEnum.approved,
                     userRentId = userDetails.ToList()[0].Id
                 };
 
@@ -94,7 +96,7 @@ namespace BookRental.Controllers
         }
 
         // GET: BookRent
-        public ActionResult Index()
+        public ActionResult Index(int? pageNumber, string option = null, string search = null)
         {
             string userId = User.Identity.GetUserId();
 
@@ -129,12 +131,25 @@ namespace BookRental.Controllers
                             startDate = br.startDate
                         };
 
+            if (option == "email" && search.Length > 0)
+            {
+                model = model.Where(u => u.email.Contains(search));
+            }
+            if (option == "name" && search.Length > 0)
+            {
+                model = model.Where(u => u.fname.Contains(search) || u.lname.Contains(search));
+            }
+            if (option == "status" && search.Length > 0)
+            {
+                model = model.Where(u => u.Status.Contains(search));
+            }
+
             if (!User.IsInRole(SD.adminUserRole))
             {
                 model = model.Where(u => u.userRentId.Equals(userId));
             }
 
-            return View(model.ToList());
+            return View(model.ToList().ToPagedList(pageNumber ?? 1, 10));
         }
 
         [HttpPost]
@@ -180,6 +195,71 @@ namespace BookRental.Controllers
             }
 
             return View();
+        }
+
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            BookRent bookRent = db.BookRents.Find(id);
+
+            var model = getViewModelFromBookRent(bookRent);
+
+            if (model == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(model);
+        }
+
+        private BookRentalViewModel getViewModelFromBookRent(BookRent bookRent)
+        {
+            Book bookSelected = db.Books.Where(b => b.bookIdPK == bookRent.bookRentId).FirstOrDefault();
+
+            var userDetails = from u in db.Users
+                              where u.Id.Equals(bookRent.userRentId)
+                              select new
+                              {
+                                  u.Id,
+                                  u.fname,
+                                  u.lname,
+                                  u.bdate,
+                                  u.Email
+                              };
+
+            BookRentalViewModel model = new BookRentalViewModel()
+            {
+                userRentId = bookRent.userRentId,
+                bookId = bookSelected.bookIdPK,
+                rentalPrice = bookRent.rentalPrice,
+                Price = bookSelected.Price,
+                pages = bookSelected.pages,
+                fname = userDetails.ToList()[0].fname,
+                lname = userDetails.ToList()[0].lname,
+                bdate = userDetails.ToList()[0].bdate,
+                email = userDetails.ToList()[0].Email,
+                scheduledEndDate = bookRent.scheduledEndDate,
+                author = bookSelected.author,
+                startDate = bookRent.startDate,
+                availability = bookSelected.availability,
+                description = bookSelected.description,
+                genreId = bookSelected.genreId,
+                Genre = db.Genres.FirstOrDefault(g => g.genreIdPK.Equals(bookSelected.genreId)),
+                ISBN = bookSelected.ISBN,
+                imgUrl = bookSelected.imgUrl,
+                productDimensions = bookSelected.productDimensions,
+                publicationDate = bookSelected.publicationDate,
+                publisher = bookSelected.publisher,
+                Status = bookRent.Status.ToString(),
+                tittle = bookSelected.tittle,
+                additionalCharge = bookRent.additionalCharge
+            };
+
+            return model
         }
 
         protected override void Dispose(bool disposing)

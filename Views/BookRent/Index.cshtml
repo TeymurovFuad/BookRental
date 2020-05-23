@@ -1,146 +1,268 @@
-﻿@model IEnumerable<BookRental.ViewModel.BookRentalViewModel>
+﻿@model PagedList.IPagedList<BookRental.ViewModel.BookRentalViewModel>
+@using PagedList;
+@using PagedList.Mvc;
 @using BookRental.Utility
 @using BookRental.Models
 @{
     ViewBag.Title = "Index";
 }
 
-<div class="row">
-    <div class="col-sm-4">
-        <h3>Book Rental Portal</h3>
-        @if (User.IsInRole(SD.adminUserRole))
-        {
-            <p>@Html.Partial("_CreateButtonPartial")</p>
-        }
-    </div>
+@using (Html.BeginForm("Index", "BookRent", FormMethod.Get))
+{
 
-    <div class="col-sm-8">
-        <div class="row">
-            <div class="col-sm-12 text-right">
-                @if (User.IsInRole(SD.adminUserRole))
-                {
-                    <label class="radio-inline">
-                        @Html.RadioButton("option", "name") Name
-                    </label>
-                    <label class="radio-inline">
-                        @Html.RadioButton("option", "email") Email
-                    </label>
-                }
-                <label class="radio-inline">
-                    @Html.RadioButton("option", "status") Status
-                </label>
-            </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <h3>Book Rental Portal</h3>
+            @if (User.IsInRole(SD.adminUserRole))
+            {
+                <p>@Html.Partial("_CreateButtonPartial")</p>
+            }
         </div>
-        <div class="row float-right">
-            <div class="input-group mb-3">
-                <div class="input-group-append">
-                    <button class="btn btn-primary" type="submit">
-                        <span class="fa fa-search"></span>
-                    </button>
+
+        <div class="col-sm-8">
+            <div class="row">
+                <div class="col-sm-12 text-right">
+                    @if (User.IsInRole(SD.adminUserRole))
+                    {
+                        <label class="radio-inline">
+                            @Html.RadioButton("option", "name") Name
+                        </label>
+                        <label class="radio-inline">
+                            @Html.RadioButton("option", "email") Email
+                        </label>
+                    }
+                    <label class="radio-inline">
+                        @Html.RadioButton("option", "status") Status
+                    </label>
                 </div>
-                @Html.Editor("Search", new { HtmlAttributes = new { @class = "form-control input-sm", placeholder = "Search" } })
+            </div>
+            <div class="row float-right">
+                <div class="input-group mb-3">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit">
+                            <span class="fa fa-search"></span>
+                            <i class="fa fa-minus-circle"></i>
+                        </button>
+                    </div>
+                    @Html.Editor("Search", new { HtmlAttributes = new { @class = "form-control input-sm", id = "search", placeholder = "Search" } })
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-warning" id="reset-search">
+                            <span class="text-decoration-none font-weight-bold">X</span>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 
-<table class="table table-hover table-responsive-lg w-auto">
-    <thead class="thead-dark">
-        <tr>
-            <th scope="col">#</th>
-            <th scope="row">
-                @Html.DisplayNameFor(m => m.fname)
-            </th>
-            <th scope="col">
-                @Html.DisplayNameFor(m => m.lname)
-            </th>
-            <th scope="col">
-                @Html.DisplayNameFor(m => m.email)
-            </th>
-            <th scope="col">
-                @Html.DisplayNameFor(m => m.tittle)
-            </th>
-            <th scope="col">
-                @Html.DisplayNameFor(m => m.startDate)
-            </th>
-            <th scope="col">
-                @Html.DisplayNameFor(m => m.scheduledEndDate)
-            </th>
-            <th scope="col">
-                @Html.DisplayNameFor(m => m.rentalPrice)
-            </th>
-            <th scope="col">
-                @Html.DisplayNameFor(m => m.rentalDuration)
-            </th>
-            <th scope="col">
-                @Html.DisplayNameFor(m => m.Status)
-            </th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @{ int rowCount = 0;}
-        @foreach (var item in Model)
-        {
+    <table class="table table-hover table-responsive-lg w-auto">
+        <thead class="thead-dark">
             <tr>
+                <th scope="col">#</th>
                 <th scope="row">
-                    @{rowCount += 1;}
-                    @rowCount
+                    @Html.DisplayNameFor(m => Model[0].fname)
                 </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(m => Model[0].lname)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(m => Model[0].email)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(m => Model[0].tittle)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(m => Model[0].startDate)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(m => Model[0].scheduledEndDate)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(m => Model[0].rentalPrice)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(m => Model[0].rentalDuration)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(m => Model[0].Status)
+                </th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{ int rowCount = 0;}
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th scope="row">
+                        @{rowCount += 1;}
+                        @rowCount
+                        @item.
+                    </th>
                     @Html.HiddenFor(m => item.userRentId)
                     @Html.HiddenFor(m => item.bookId)
-                <td>
-                    @Html.DisplayFor(m => item.fname)
-                </td>
-                <td>
-                    @Html.DisplayFor(m => item.lname)
-                </td>
-                <td>
-                    @Html.DisplayFor(m => item.email)
-                </td>
-                <td>
-                    @Html.DisplayFor(m => item.tittle)
-                </td>
-                <td>
-                    @Html.DisplayFor(m => item.startDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(m => item.scheduledEndDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(m => item.rentalPrice)
-                </td>
-                <td>
-                    @Html.DisplayFor(m => item.rentalDuration)
-                </td>
-                <td>
-                    @Html.DisplayFor(m => item.Status)
-                </td>
-                <td>
-                    @*Details*@
-                    @Html.Partial("_IndividualButtonPartial", new IndividualButtonPartial
-               {
-                   action = "Details",
-                   buttonType = "success",
-                   icon = "list",
-                   text = "Details Button",
-                   bookId = null,
-                   customerId = null,
-                   genreId = null,
-                   membershipTypeId = null,
-                   userId = null,
-                   bookRentalId = item.bookRentalIdPK
-               })
-                </td>
-                <td>
-                    @*Action*@
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+                    <td>
+                        @Html.DisplayFor(m => item.fname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.lname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.tittle)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.startDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.scheduledEndDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.rentalPrice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.rentalDuration)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.Status)
+                    </td>
+                    <td>
+                        @*Details*@
+                        @Html.Partial("_IndividualButtonPartial", new IndividualButtonPartial
+                   {
+                       action = "Details",
+                       buttonType = "success",
+                       icon = "list",
+                       text = "Details",
+                       bookId = null,
+                       customerId = null,
+                       genreId = null,
+                       membershipTypeId = null,
+                       userId = null,
+                       bookRentalId = item.bookRentalIdPK
+                   })
+                    </td>
+                    <td>
+                        @*Buttons*@
 
+                        @*Approve and Decline*@
+                        @if (item.Status.ToString().ToLower().Equals(SD.Requested) && User.IsInRole(SD.adminUserRole))
+                        {
+                            @Html.Partial("_IndividualButtonPartial", new IndividualButtonPartial
+                       {
+                           action = "Declined",
+                           buttonType = "danger",
+                           icon = "minus-circle",
+                           text = "Decline",
+                           bookId = null,
+                           customerId = null,
+                           genreId = null,
+                           membershipTypeId = null,
+                           userId = null,
+                           bookRentalId = item.bookRentalIdPK
+                       });
+                            @Html.Partial("_IndividualButtonPartial", new IndividualButtonPartial
+                       {
+                           action = "Approved",
+                           buttonType = "primary",
+                           icon = "check",
+                           text = "Approve",
+                           bookId = null,
+                           customerId = null,
+                           genreId = null,
+                           membershipTypeId = null,
+                           userId = null,
+                           bookRentalId = item.bookRentalIdPK
+                       });
+                        }
+                        else
+                        {
+                            if ((item.Status.ToString().ToLower().Equals(SD.Requested) || User.IsInRole(SD.endUserRole))
+                                || (User.IsInRole(SD.adminUserRole) && !item.Status.ToString().ToLower().Equals(SD.Closed)))
+                            {
+                                //delete button
+
+                                //if user, status required
+                                //if admin, status !equal and !requested
+
+                                @Html.Partial("_IndividualButtonPartial", new IndividualButtonPartial
+                           {
+                               action = "Deleted",
+                               buttonType = "danger",
+                               icon = "trash",
+                               text = "Delete",
+                               bookId = null,
+                               customerId = null,
+                               genreId = null,
+                               membershipTypeId = null,
+                               userId = null,
+                               bookRentalId = item.bookRentalIdPK
+                           });
+
+
+                            }
+                            if (item.Status.ToString().ToLower().Equals(SD.Approved) && User.IsInRole(SD.adminUserRole))
+                            {
+                                //display pickup
+
+                                @Html.Partial("_IndividualButtonPartial", new IndividualButtonPartial
+                           {
+                               action = "PickedUp",
+                               buttonType = "primary",
+                               icon = "hand-holding",
+                               text = "Pick Up",
+                               bookId = null,
+                               customerId = null,
+                               genreId = null,
+                               membershipTypeId = null,
+                               userId = null,
+                               bookRentalId = item.bookRentalIdPK
+                           });
+                            }
+                            else
+                            {
+                                if (item.Status.ToString().ToLower().Equals(SD.Rented) && User.IsInRole(SD.adminUserRole))
+                                {
+                                    //display return
+
+                                    @Html.Partial("_IndividualButtonPartial", new IndividualButtonPartial
+                               {
+                                   action = "Return",
+                                   buttonType = "primary",
+                                   icon = "undo",
+                                   text = "Return",
+                                   bookId = null,
+                                   customerId = null,
+                                   genreId = null,
+                                   membershipTypeId = null,
+                                   userId = null,
+                                   bookRentalId = item.bookRentalIdPK
+                               });
+                                }
+                            }
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @Html.PagedListPager(Model, pageNumber => Url.Action("Index", new { pageNumber }))
+}
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#reset-search").click(function () {
+                $('input[name="option"]').prop('checked', false);
+                $("#search").val("");
+            })
+        })
+    </script>
+}

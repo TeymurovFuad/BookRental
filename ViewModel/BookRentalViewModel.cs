@@ -105,15 +105,15 @@ namespace BookRental.ViewModel
         public bool? additionalCharge { get; set; }
 
         //Rental Price
-        [Display(Name = "Rental Price")]
+        [Display(Name = "Price")]
         public double rentalPrice { get; set; }
 
         //Actual status of rental
-        [Display(Name = "Rental Duration")]
+        [Display(Name = "Duration")]
         public string rentalDuration { get; set; }
 
         //Actual status of rental
-        [Display(Name = "Rental Status")]
+        [Display(Name = "Status")]
         public string Status { get; set; }
 
         //One Month Price

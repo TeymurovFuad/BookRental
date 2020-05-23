@@ -7,6 +7,8 @@ namespace BookRental.Utility
 {
     public static class SD
     {
+        //static details
+
         public const string endUserRole = "Customer";
         public const string adminUserRole = "Super Admin";
 
@@ -15,5 +17,11 @@ namespace BookRental.Utility
 
         public const string oneMonthCount = "1";
         public const string sixMonthCount = "6";
+
+        public const string Requested = "requested";
+        public const string Approved = "approved";
+        public const string Rented = "rented";
+        public const string PickedUp = "pickedup";
+        public const string Closed = "closed";
     }
 }
