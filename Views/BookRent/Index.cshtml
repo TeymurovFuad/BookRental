@@ -41,7 +41,6 @@
                     <div class="input-group-append">
                         <button class="btn btn-primary" type="submit">
                             <span class="fa fa-search"></span>
-                            <i class="fa fa-minus-circle"></i>
                         </button>
                     </div>
                     @Html.Editor("Search", new { HtmlAttributes = new { @class = "form-control input-sm", id = "search", placeholder = "Search" } })
@@ -101,7 +100,6 @@
                     <th scope="row">
                         @{rowCount += 1;}
                         @rowCount
-                        @item.
                     </th>
                     @Html.HiddenFor(m => item.userRentId)
                     @Html.HiddenFor(m => item.bookId)
@@ -156,7 +154,7 @@
                         {
                             @Html.Partial("_IndividualButtonPartial", new IndividualButtonPartial
                        {
-                           action = "Declined",
+                           action = "Decline",
                            buttonType = "danger",
                            icon = "minus-circle",
                            text = "Decline",
@@ -169,7 +167,7 @@
                        });
                             @Html.Partial("_IndividualButtonPartial", new IndividualButtonPartial
                        {
-                           action = "Approved",
+                           action = "Approve",
                            buttonType = "primary",
                            icon = "check",
                            text = "Approve",
@@ -193,7 +191,7 @@
 
                                 @Html.Partial("_IndividualButtonPartial", new IndividualButtonPartial
                            {
-                               action = "Deleted",
+                               action = "Delete",
                                buttonType = "danger",
                                icon = "trash",
                                text = "Delete",
@@ -213,7 +211,7 @@
 
                                 @Html.Partial("_IndividualButtonPartial", new IndividualButtonPartial
                            {
-                               action = "PickedUp",
+                               action = "PickUp",
                                buttonType = "primary",
                                icon = "hand-holding",
                                text = "Pick Up",

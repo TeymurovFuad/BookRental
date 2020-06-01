@@ -1,0 +1,110 @@
+﻿@model BookRental.ViewModel.BookRentalViewModel
+@{
+    ViewBag.Title = "Decline";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <fieldset disabled>
+        <h3>Decline</h3>
+        <div class="border rounded border-primary p-2 font-weight-bold text-info">
+            <div class="row">
+
+                @*Rent Details*@
+                <div class="col-sm-10">
+                    <div class="row my-2">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.ISBN, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(model => model.ISBN, htmlAttributes: new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.tittle, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(model => model.tittle, htmlAttributes: new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.rentalPrice, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(model => model.rentalPrice, htmlAttributes: new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.startDate, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(model => model.startDate, "{0:MM/dd/yyy}", htmlAttributes: new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.scheduledEndDate, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(model => model.scheduledEndDate, "{0:MM/dd/yyy}", htmlAttributes: new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.additionalCharge, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(model => model.additionalCharge, htmlAttributes: new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.completeName, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(model => model.completeName, htmlAttributes: new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.bdate, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(model => model.bdate, "{0:MM/dd/yyy}", htmlAttributes: new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(model => model.email, htmlAttributes: new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+
+                @*Image*@
+                <div class="col-sm-2">
+                    <div class="img-thumbnail">
+                        <a href="@Model.imgUrl" target="_blank">
+                            <img src="@Model.imgUrl" alt="@Model.tittle by @Model.author" class="w-100 h-auto" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+
+    <br />
+
+    <p>
+        @Html.Partial("_BackToListButtonPartial")
+        <input type="submit" name="decline" value="Submit" class="btn btn-sm btn-danger"/>
+    </p>
+}
+
