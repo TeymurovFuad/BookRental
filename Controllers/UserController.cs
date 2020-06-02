@@ -1,4 +1,5 @@
 ﻿using BookRental.Models;
+using BookRental.Utility;
 using BookRental.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Web.Mvc;
 
 namespace BookRental.Controllers
 {
+    [Authorize(Roles = SD.adminUserRole)]
     public class UserController : Controller
     {
 

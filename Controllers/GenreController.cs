@@ -1,4 +1,5 @@
 ﻿using BookRental.Models;
+using BookRental.Utility;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -6,6 +7,7 @@ using System.Web.Mvc;
 
 namespace BookRental.Controllers
 {
+	[Authorize(Roles = SD.adminUserRole)]
 	public class GenreController : Controller
 	{
 		ApplicationDbContext db = new ApplicationDbContext();

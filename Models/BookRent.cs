@@ -35,7 +35,7 @@ namespace BookRental.Models
 
         //Additional Charge
         [Display(Name = "Additional Charge")]
-        public bool? additionalCharge { get; set; }
+        public double? additionalCharge { get; set; }
 
         //Rental Price
         [Display(Name = "Rental Price")]

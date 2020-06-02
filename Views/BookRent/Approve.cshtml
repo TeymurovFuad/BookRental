@@ -7,13 +7,13 @@
 {
     @Html.AntiForgeryToken()
 
-    <fieldset disabled>
-        <h3>@Model.actionName</h3>
-        <div class="border rounded border-primary p-2 font-weight-bold text-info">
-            <div class="row">
+    <h3>@Model.actionName</h3>
+    <div class="border rounded border-primary p-2 font-weight-bold text-info">
+        <div class="row">
 
-                @*Rent Details*@
-                <div class="col-sm-10">
+            @*Rent Details*@
+            <div class="col-sm-10">
+                <fieldset disabled>
 
                     @*ISBN*@
                     <div class="row my-2">
@@ -65,61 +65,75 @@
                         </div>
                     </div>
 
-                    @*additionalCharge*@
-                    @if (Model.actionName.Equals("Return"))
-                    {
-                        <div class="row my-2">
-                            <div class="col-md-3">
-                                @Html.LabelFor(model => model.additionalCharge, htmlAttributes: new { @class = "control-label" })
-                            </div>
-                            <div class="col-md-9">
-                                @Html.TextBoxFor(model => model.additionalCharge, htmlAttributes: new { @class = "form-control" })
-                            </div>
-                        </div>
-                    }
+                </fieldset>
 
-                    @*completeName*@
+                @*additionalCharge*@
+                @if (Model.actionName.Equals("Return"))
+                {
                     <div class="row my-2">
                         <div class="col-md-3">
-                            @Html.LabelFor(model => model.completeName, htmlAttributes: new { @class = "control-label" })
+                            @Html.LabelFor(model => model.additionalCharge, htmlAttributes: new { @class = "control-label" })
                         </div>
                         <div class="col-md-9">
-                            @Html.TextBoxFor(model => model.completeName, htmlAttributes: new { @class = "form-control" })
+                            @Html.TextBoxFor(model => model.additionalCharge, htmlAttributes: new { @class = "form-control" })
                         </div>
                     </div>
+                }
 
-                    @*bdate*@
-                    <div class="row my-2">
-                        <div class="col-md-3">
-                            @Html.LabelFor(model => model.bdate, htmlAttributes: new { @class = "control-label" })
-                        </div>
-                        <div class="col-md-9">
-                            @Html.TextBoxFor(model => model.bdate, "{0:MM/dd/yyy}", htmlAttributes: new { @class = "form-control" })
-                        </div>
+            <fieldset disabled>
+
+                @*rentalDuration*@
+                <div class="row my-2">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.rentalDuration, htmlAttributes: new { @class = "control-label" })
                     </div>
-
-                    @*email*@
-                    <div class="row my-2">
-                        <div class="col-md-3">
-                            @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label" })
-                        </div>
-                        <div class="col-md-9">
-                            @Html.TextBoxFor(model => model.email, htmlAttributes: new { @class = "form-control" })
-                        </div>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(model => model.rentalDuration, htmlAttributes: new { @class = "form-control" })
                     </div>
                 </div>
 
-                @*Image*@
-                <div class="col-sm-2">
-                    <div class="img-thumbnail">
-                        <a href="@Model.imgUrl" target="_blank">
-                            <img src="@Model.imgUrl" alt="@Model.tittle by @Model.author" class="w-100 h-auto" />
-                        </a>
+                @*completeName*@
+                <div class="row my-2">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.completeName, htmlAttributes: new { @class = "control-label" })
                     </div>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(model => model.completeName, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+
+                @*bdate*@
+                <div class="row my-2">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.bdate, htmlAttributes: new { @class = "control-label" })
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(model => model.bdate, "{0:MM/dd/yyy}", htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+
+                @*email*@
+                <div class="row my-2">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label" })
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(model => model.email, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+            </fieldset>
+            </div>
+
+            @*Image*@
+            <div class="col-sm-2">
+                <div class="img-thumbnail">
+                    <a href="@Model.imgUrl" target="_blank">
+                        <img src="@Model.imgUrl" alt="@Model.tittle by @Model.author" class="w-100 h-auto" />
+                    </a>
                 </div>
             </div>
         </div>
-    </fieldset>
+    </div>
 
     <br />
 

@@ -281,6 +281,10 @@
     <Compile Include="Migrations\202005171436127_User id changed from int to string in BookRentalViewModel.designer.cs">
       <DependentUpon>202005171436127_User id changed from int to string in BookRentalViewModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006021950217_changed datatype for additionalCharge filed.cs" />
+    <Compile Include="Migrations\202006021950217_changed datatype for additionalCharge filed.designer.cs">
+      <DependentUpon>202006021950217_changed datatype for additionalCharge filed.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BookRent.cs" />
@@ -553,6 +557,7 @@
     <Content Include="Views\BookRent\Details.cshtml" />
     <Content Include="Views\BookRent\Decline.cshtml" />
     <Content Include="Views\BookRent\Approve.cshtml" />
+    <Content Include="Views\BookRent\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -608,6 +613,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005171436127_User id changed from int to string in BookRentalViewModel.resx">
       <DependentUpon>202005171436127_User id changed from int to string in BookRentalViewModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006021950217_changed datatype for additionalCharge filed.resx">
+      <DependentUpon>202006021950217_changed datatype for additionalCharge filed.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -103,7 +103,7 @@ namespace BookRental.ViewModel
 
         //Additional Charge
         [Display(Name = "Additional Charge")]
-        public bool? additionalCharge { get; set; }
+        public double? additionalCharge { get; set; }
 
         //Rental Price
         [Display(Name = "Price")]

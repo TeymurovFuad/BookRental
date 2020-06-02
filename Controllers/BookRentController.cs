@@ -13,6 +13,7 @@ using System.Net;
 
 namespace BookRental.Controllers
 {
+    [Authorize]
     public class BookRentController : Controller
     {
         ApplicationDbContext db = new ApplicationDbContext();
@@ -260,6 +261,49 @@ namespace BookRental.Controllers
             return RedirectToAction("Index");
         }
 
+        //Delete: Get
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            BookRent bookRent = db.BookRents.Find(id);
+
+            var model = getViewModelFromBookRent(bookRent);
+
+            if (model == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(model);
+        }
+
+        //Delete: Post
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id)
+        {
+            if (id == 0)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            BookRent bookRent = db.BookRents.Find(id);
+
+            var bookInDB = db.Books.Where(b => b.bookIdPK.Equals(bookRent.bookRentId)).FirstOrDefault();
+            if (!bookRent.Status.ToString().Equals("Rented"))
+            {
+                bookInDB.availability += 1;
+            }
+
+            db.BookRents.Remove(bookRent);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
         //Approve: Get
         public ActionResult Approve(int? id)
         {
@@ -370,7 +414,7 @@ namespace BookRental.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Return(BookRentalViewModel model, int? id)
         {
-            if (id == 0 || id == null)
+            if (model.bookRentalIdPK == 0 && (id == 0 || id == null))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -384,7 +428,7 @@ namespace BookRental.Controllers
 
             bookInDB.availability += 1;
 
-            bookRent.actualEndDate = Convert.ToDateTime("02/02/2021 05:05");
+            bookRent.actualEndDate = DateTime.Now;
 
             db.SaveChanges();
 
@@ -409,7 +453,8 @@ namespace BookRental.Controllers
             BookRentalViewModel model = new BookRentalViewModel()
             {
                 userRentId = bookRent.userRentId,
-                bookRentalIdPK = bookSelected.bookIdPK,
+                bookRentalIdPK = bookRent.bookRentIdPK,
+                bookId = bookSelected.bookIdPK,
                 rentalPrice = bookRent.rentalPrice,
                 Price = bookSelected.Price,
                 pages = bookSelected.pages,
@@ -418,6 +463,7 @@ namespace BookRental.Controllers
                 bdate = userDetails.ToList()[0].bdate,
                 email = userDetails.ToList()[0].Email,
                 scheduledEndDate = bookRent.scheduledEndDate,
+                rentalDuration = bookRent.rentalDuration,
                 author = bookSelected.author,
                 startDate = bookRent.startDate,
                 availability = bookSelected.availability,

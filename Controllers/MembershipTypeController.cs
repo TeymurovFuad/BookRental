@@ -7,9 +7,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BookRental.Models;
+using BookRental.Utility;
 
 namespace BookRental.Controllers
 {
+    [Authorize(Roles = SD.adminUserRole)]
     public class MembershipTypeController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

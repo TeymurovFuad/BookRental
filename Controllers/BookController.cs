@@ -7,11 +7,13 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BookRental.Models;
+using BookRental.Utility;
 using BookRental.ViewModel;
 using BookRental.Views.Home;
 
 namespace BookRental.Controllers
 {
+    [Authorize(Roles = SD.adminUserRole)]
     public class BookController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

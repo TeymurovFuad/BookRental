@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using BookRental.Utility
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -17,12 +18,15 @@
                     <span class="navbar-toggler-icon"></span>
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                @Html.ActionLink("Guirky Book Rental House", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Book Rental House", "Index", "Home", new { area = "" }, new { @class = "navbar-brand font-weight-bolder" })
             </div>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">@Html.ActionLink("Rental Status", "Index", "BookRent", null, new { @class="nav-link"})</li>
-                    @Html.Partial("_AdminMenuPartial")
+                    <li class="nav-item">@Html.ActionLink("Rental Status", "Index", "BookRent", null, new { @class = "nav-link" })</li>
+                    @if (User.IsInRole(SD.adminUserRole))
+                    {
+                        @Html.Partial("_AdminMenuPartial")
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
